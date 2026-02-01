@@ -22,7 +22,7 @@ const images = [
     alt: "KrackHack Hackathon Moment 5",
   },
   {
-    src: "/gallery/6.jpg",
+    src: "/gallery/6.png",
     alt: "KrackHack Hackathon Moment 6",
   },
 ]

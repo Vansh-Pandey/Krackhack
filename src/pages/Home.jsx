@@ -1,15 +1,100 @@
-import React from 'react'
-import Hero from '../components/home/Hero'
-import About from '../components/home/About'
-import PhotoGallery from '../components/home/PhotoGallery'
+import React from "react"
+import Hero from "../components/home/Hero"
+import About from "../components/home/About"
+import PhotoGallery from "../components/home/PhotoGallery"
+
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "../components/ui/scroll-based-velocity"
+
+const BorderStrip = ({ children }) => (
+  <div
+    className="
+      bg-white
+      border-y-4 border-black
+      my-10
+      overflow-hidden
+    "
+  >
+    {children}
+  </div>
+)
+
+
 const Home = () => {
   return (
     <>
       <Hero />
+
+      {/* SCROLL STRIP — 1 */}
+      <BorderStrip>
+        <ScrollVelocityContainer className="py-5">
+          <ScrollVelocityRow
+            baseVelocity={18}
+            direction={1}
+            className="text-3xl md:text-6xl font-bubble font-extrabold tracking-widest text-black"
+          >
+            BUILD • BREAK • REPEAT • BUILD • BREAK • REPEAT •
+          </ScrollVelocityRow>
+
+          <ScrollVelocityRow
+            baseVelocity={18}
+            direction={-1}
+            className="text-3xl md:text-6xl font-bubble font-extrabold tracking-widest text-black"
+          >
+            CODE ALL NIGHT • SHIP BY MORNING • CODE ALL NIGHT •
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
+      </BorderStrip>
+
       <About />
+
+      {/* SCROLL STRIP — 2 */}
+      <BorderStrip>
+        <ScrollVelocityContainer className="py-5">
+          <ScrollVelocityRow
+            baseVelocity={22}
+            direction={1}
+            className="text-2xl md:text-5xl font-monospace font-bold tracking-wide text-black"
+          >
+            IDEAS → PROTOTYPES → PRODUCTS → IDEAS → PROTOTYPES →
+          </ScrollVelocityRow>
+
+          <ScrollVelocityRow
+            baseVelocity={22}
+            direction={-1}
+            className="text-2xl md:text-5xl font-monospace font-bold tracking-wide text-black"
+          >
+            THINK FAST • FAIL FASTER • LEARN FASTEST •
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
+      </BorderStrip>
+
       <PhotoGallery />
+
+      {/* SCROLL STRIP — 3 (FINAL HYPE) */}
+      <BorderStrip>
+        <ScrollVelocityContainer className="py-6">
+          <ScrollVelocityRow
+            baseVelocity={26}
+            direction={1}
+            className="text-4xl md:text-7xl font-bubble font-extrabold tracking-[0.2em] text-black"
+          >
+            KRACKHACK IS NOT AN EVENT — IT&apos;S A MINDSET —
+          </ScrollVelocityRow>
+
+          <ScrollVelocityRow
+            baseVelocity={26}
+            direction={-1}
+            className="text-4xl md:text-7xl font-bubble font-extrabold tracking-[0.2em] text-black"
+          >
+            DREAM • BUILD • DEPLOY • DOMINATE •
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
+      </BorderStrip>
     </>
-    )
+  )
 }
 
 export default Home
