@@ -35,7 +35,7 @@ const About = () => {
             {/* TITLE */}
             <div className=" inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-8">
               <h2 className="cursor-target font-bubble font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" style={{ fontFamily: "BlueWinter" }}
->
+              >
                 What is{" "}
                 <span className="text-[#EA4335]">K</span>
                 <span className="text-[#4285F4]">r</span>
@@ -66,7 +66,8 @@ const About = () => {
           </div>
 
           {/* RIGHT — DYNAMIC ORBITS */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end lg:pr-16 xl:pr-24">
+          <div className="order-1 lg:order-2 flex items-center justify-center lg:justify-end">
+
             <div
               ref={orbitRef}
               className="

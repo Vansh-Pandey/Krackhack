@@ -129,6 +129,7 @@ const Hero = () => {
     transition-all duration-200
     active:shadow-none
   "
+  style={{ fontFamily: "BlueWinter" }}
           >
             REGISTER
           </button>
@@ -149,6 +150,7 @@ const Hero = () => {
     transition-all duration-200
     active:shadow-none
   "
+  style={{ fontFamily: "BlueWinter" }}
           >
             LEARN MORE
           </button>
