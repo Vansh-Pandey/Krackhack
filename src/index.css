@@ -15,3 +15,33 @@
     }
   }
 }
+
+@keyframes bubble-pop {
+  0% {
+    transform: translateY(20px) scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-6px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-bubble-pop {
+  animation: bubble-pop 0.6s ease-out forwards,
+             float 3s ease-in-out infinite;
+  animation-delay: inherit;
+}

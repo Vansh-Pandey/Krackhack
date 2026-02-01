@@ -1,56 +1,57 @@
+import { useMemo } from "react";
+
+const COLORS = ["#EA4335", "#4285F4", "#FBBC05", "#34A853"];
+
 const FloatingCircles = () => {
-  const circles = [
-    { color: '#EA4335', size: 80, duration: 20, delay: 0 },
-    { color: '#4285F4', size: 120, duration: 25, delay: 2 },
-    { color: '#FBBC05', size: 60, duration: 18, delay: 4 },
-    { color: '#34A853', size: 100, duration: 22, delay: 1 },
-    { color: '#EA4335', size: 90, duration: 24, delay: 3 },
-    { color: '#4285F4', size: 70, duration: 19, delay: 5 },
-    { color: '#FBBC05', size: 110, duration: 21, delay: 2.5 },
-    { color: '#34A853', size: 85, duration: 23, delay: 0.5 },
-  ];
+  const circles = useMemo(
+    () =>
+      Array.from({ length: 20 }).map((_, i) => ({
+        id: i,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        size: Math.random() * 80 + 60,   // 60–140px
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        duration: Math.random() * 20 + 20,
+        delay: Math.random() * 5,
+        floatType: Math.floor(Math.random() * 4),
+      })),
+    []
+  );
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {circles.map((circle, index) => (
+    <div
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      style={{ zIndex: 5 }}
+    >
+      {circles.map((circle) => (
         <div
-          key={index}
-          className="absolute rounded-full opacity-15 border-2"
+          key={circle.id}
+          className="absolute rounded-full"
           style={{
-            width: `${circle.size}px`,
-            height: `${circle.size}px`,
-            borderColor: circle.color,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animation: `float-${index % 4} ${circle.duration}s ease-in-out infinite`,
+            width: circle.size,
+            height: circle.size,
+            backgroundColor: circle.color, // PURE Google colors
+            opacity: 1,                  // solid but subtle
+            left: `${circle.x}%`,
+            top: `${circle.y}%`,
+            animation: `float-${circle.floatType} ${circle.duration}s ease-in-out infinite alternate`,
             animationDelay: `${circle.delay}s`,
           }}
         />
       ))}
+
       <style jsx>{`
         @keyframes float-0 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(30px, -40px) scale(1.1); }
-          50% { transform: translate(-20px, -80px) scale(0.9); }
-          75% { transform: translate(-50px, -40px) scale(1.05); }
+          to { transform: translate(120px, -80px); }
         }
         @keyframes float-1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(-40px, 30px) scale(0.95); }
-          50% { transform: translate(60px, 70px) scale(1.1); }
-          75% { transform: translate(30px, 40px) scale(0.9); }
+          to { transform: translate(-100px, 100px); }
         }
         @keyframes float-2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(50px, 50px) scale(1.05); }
-          50% { transform: translate(-30px, 90px) scale(0.95); }
-          75% { transform: translate(-60px, 30px) scale(1.1); }
+          to { transform: translate(140px, 120px); }
         }
         @keyframes float-3 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          25% { transform: translate(-50px, -30px) scale(0.9); }
-          50% { transform: translate(40px, -70px) scale(1.1); }
-          75% { transform: translate(20px, -50px) scale(0.95); }
+          to { transform: translate(-120px, -140px); }
         }
       `}</style>
     </div>
