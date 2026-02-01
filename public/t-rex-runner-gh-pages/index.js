@@ -429,7 +429,7 @@
             if (this.activated) {
                 this.setArcadeModeContainerScale();
             }
-            
+
             // Redraw the elements back onto the canvas.
             if (this.canvas) {
                 this.canvas.width = this.dimensions.WIDTH;
@@ -474,7 +474,7 @@
                     'from { width:' + Trex.config.WIDTH + 'px }' +
                     'to { width: ' + this.dimensions.WIDTH + 'px }' +
                     '}';
-                
+
                 // create a style sheet to put the keyframe rule in 
                 // and then place the style sheet in the html head    
                 var sheet = document.createElement('style');
@@ -644,7 +644,8 @@
                 this.touchController.addEventListener(Runner.events.TOUCHEND, this);
                 this.containerEl.addEventListener(Runner.events.TOUCHSTART, this);
             } else {
-                // Mouse.
+                // Mouse - ADD CANVAS CLICK SUPPORT
+                this.canvas.addEventListener(Runner.events.MOUSEDOWN, this);  // ADD THIS LINE
                 document.addEventListener(Runner.events.MOUSEDOWN, this);
                 document.addEventListener(Runner.events.MOUSEUP, this);
             }
@@ -662,6 +663,7 @@
                 this.touchController.removeEventListener(Runner.events.TOUCHEND, this);
                 this.containerEl.removeEventListener(Runner.events.TOUCHSTART, this);
             } else {
+                this.canvas.removeEventListener(Runner.events.MOUSEDOWN, this);  // ADD THIS LINE
                 document.removeEventListener(Runner.events.MOUSEDOWN, this);
                 document.removeEventListener(Runner.events.MOUSEUP, this);
             }
@@ -679,7 +681,7 @@
 
             if (e.target != this.detailsButton) {
                 if (!this.crashed && (Runner.keycodes.JUMP[e.keyCode] ||
-                    e.type == Runner.events.TOUCHSTART)) {
+                    e.type == Runner.events.TOUCHSTART || e.type == Runner.events.MOUSEDOWN)) {
                     if (!this.playing) {
                         this.loadSounds();
                         this.playing = true;
@@ -842,7 +844,7 @@
                 this.update();
             }
         },
-        
+
         /**
          * Hides offline messaging for a fullscreen game only experience.
          */
@@ -863,15 +865,15 @@
             // Positions the game container at 10% of the available vertical window
             // height minus the game container height.
             const translateY = Math.ceil(Math.max(0, (windowHeight - scaledCanvasHeight -
-                                                      Runner.config.ARCADE_MODE_INITIAL_TOP_POSITION) *
-                                                  Runner.config.ARCADE_MODE_TOP_POSITION_PERCENT)) *
-                  window.devicePixelRatio;
+                Runner.config.ARCADE_MODE_INITIAL_TOP_POSITION) *
+                Runner.config.ARCADE_MODE_TOP_POSITION_PERCENT)) *
+                window.devicePixelRatio;
 
             const cssScale = scale;
             this.containerEl.style.transform =
                 'scale(' + cssScale + ') translateY(' + translateY + 'px)';
         },
-        
+
         /**
          * Pause the game if the tab is not in focus.
          */
