@@ -33,8 +33,8 @@ const PhotoGallery = () => {
       <div className="mx-auto max-w-7xl px-6">
 
         {/* TITLE */}
-        <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 className="cursor-target font-bubble font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide">
+        <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12 ">
+          <h2 className="cursor-target font-bubble font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" style={{ fontFamily: "BlueWinter" }}>
             <span className="text-[#4285F4]">G</span>
             <span className="text-[#EA4335]">a</span>
             <span className="text-[#FBBC05]">l</span>

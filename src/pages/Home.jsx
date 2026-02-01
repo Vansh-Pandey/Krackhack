@@ -33,7 +33,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={18}
             direction={1}
-            className="text-3xl md:text-6xl font-bubble font-extrabold tracking-widest text-black"
+            className="text-3xl md:text-6xl font-bluewinter  font-bold tracking-widest text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             BUILD • BREAK • REPEAT • BUILD • BREAK • REPEAT •
           </ScrollVelocityRow>
@@ -41,7 +43,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={18}
             direction={-1}
-            className="text-3xl md:text-6xl font-bubble font-extrabold tracking-widest text-black"
+            className="text-3xl md:text-6xl font-bluewinter  font-bold tracking-widest text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             CODE ALL NIGHT • SHIP BY MORNING • CODE ALL NIGHT •
           </ScrollVelocityRow>
@@ -56,7 +60,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={22}
             direction={1}
-            className="text-2xl md:text-5xl font-monospace font-bold tracking-wide text-black"
+            className="text-2xl md:text-5xl font-bluewinter  font-bold tracking-wide text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             IDEAS → PROTOTYPES → PRODUCTS → IDEAS → PROTOTYPES →
           </ScrollVelocityRow>
@@ -64,7 +70,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={22}
             direction={-1}
-            className="text-2xl md:text-5xl font-monospace font-bold tracking-wide text-black"
+            className="text-2xl md:text-5xl font-bluewinter  font-bold tracking-wide text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             THINK FAST • FAIL FASTER • LEARN FASTEST •
           </ScrollVelocityRow>
@@ -79,7 +87,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={26}
             direction={1}
-            className="text-4xl md:text-7xl font-bubble font-extrabold tracking-[0.2em] text-black"
+            className="text-4xl md:text-7xl font-bluewinter  font-extrabold tracking-[0.2em] text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             KRACKHACK IS NOT AN EVENT — IT&apos;S A MINDSET —
           </ScrollVelocityRow>
@@ -87,7 +97,9 @@ const Home = () => {
           <ScrollVelocityRow
             baseVelocity={26}
             direction={-1}
-            className="text-4xl md:text-7xl font-bubble font-extrabold tracking-[0.2em] text-black"
+            className="text-4xl md:text-7xl font-bluewinter  font-extrabold tracking-[0.2em] text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
           >
             DREAM • BUILD • DEPLOY • DOMINATE •
           </ScrollVelocityRow>

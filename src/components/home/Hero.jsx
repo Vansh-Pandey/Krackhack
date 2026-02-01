@@ -58,21 +58,21 @@ const Hero = () => {
           <h1
             className="
     flex justify-center
-    font-bubble font-extrabold
+    font-bluewinter font-extrabold
     tracking-[0.12em]
     sm:tracking-[0.15em]
     md:tracking-[0.18em]
     text-[clamp(2.2rem,6vw,5rem)]
     leading-none
     whitespace-nowrap
-  "
+  " style={{ fontFamily: "BlueWinter" }}
           >
             {"KRACKHACK".split("").map((char, i) => (
               <span
                 key={i}
                 className="
     inline-block
-    font-bubble
+    font-bluewinter
     animate-bubble-pop
     transition-transform duration-200 ease-bubble
     hover:scale-108
