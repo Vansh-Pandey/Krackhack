@@ -19,13 +19,15 @@ const TargetCursor = ({
   const activeStrengthRef = useRef(0);
 
   const isMobile = useMemo(() => {
-    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth <= 768;
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
+    if (typeof window === "undefined") return true;
+
+    return (
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(hover: none)").matches ||
+      window.innerWidth <= 768
+    );
   }, []);
+
 
   const constants = useMemo(
     () => ({
@@ -46,6 +48,7 @@ const TargetCursor = ({
   }, []);
 
   useEffect(() => {
+     if (isMobile) return;
     if (isMobile || !cursorRef.current) return;
 
     const originalCursor = document.body.style.cursor;
