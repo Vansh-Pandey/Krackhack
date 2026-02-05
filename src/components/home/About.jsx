@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { OrbitingCircles } from "../ui/OrbitingCircles"
+import { OrbitingCircles } from "../ui/OrbitingCircles.jsx"
 import { File, Settings, Search, Code } from "lucide-react"
 
 const About = () => {

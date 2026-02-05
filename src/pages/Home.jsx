@@ -1,16 +1,16 @@
-import React from "react"
-import Hero from "../components/home/Hero"
-import About from "../components/home/About"
-import PhotoGallery from "../components/home/PhotoGallery"
-import ParticipationGuidelines from "../components/home/ParticipationGuidelines"
-import Rulebook from "../components/home/Rulebook"
-import PartnersSponsors from "../components/home/PartnersSponsors" 
-import Domains from "../components/home/Domain"
-import Judging from "../components/home/Judging"
-import Timeline from "../components/home/Timeline"
-import FAQs from "../components/home/Faqs"
-import POCs from "../components/home/POCs"
-import Footer from "../components/home/Footer"
+ 
+import Hero from "../components/home/Hero.jsx"
+import About from "../components/home/About.jsx"
+import PhotoGallery from "../components/home/PhotoGallery.jsx"
+import ParticipationGuidelines from "../components/home/ParticipationGuidelines.jsx"
+import Rulebook from "../components/home/Rulebook.jsx"
+import PartnersSponsors from "../components/home/PartnersSponsors.jsx" 
+import Domains from "../components/home/Domain.jsx"
+import Judging from "../components/home/Judging.jsx"
+import Timeline from "../components/home/Timeline.jsx"
+import FAQs from "../components/home/Faqs.jsx"
+import POCs from "../components/home/POCs.jsx"
+import Footer from "../components/home/Footer.jsx"
 
 import {
   ScrollVelocityContainer,
@@ -35,8 +35,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-
-      {/* SCROLL STRIP — 1 */}
+ 
       <BorderStrip>
         <ScrollVelocityContainer className="py-5">
           <ScrollVelocityRow
@@ -62,8 +61,7 @@ const Home = () => {
       </BorderStrip>
 
       <About />
-
-      {/* SCROLL STRIP — 2 */}
+ 
       <BorderStrip>
         <ScrollVelocityContainer className="py-5">
           <ScrollVelocityRow
@@ -99,8 +97,7 @@ const Home = () => {
       <Judging />
 
       <PhotoGallery />
-
-      {/* SCROLL STRIP — 3 */}
+ 
       <BorderStrip>
         <ScrollVelocityContainer className="py-6">
           <ScrollVelocityRow
@@ -131,8 +128,7 @@ const Home = () => {
 
       <POCs />
  
-
-      {/* FINAL SCROLL STRIP */}
+ 
       <BorderStrip>
         <ScrollVelocityContainer className="py-5">
           <ScrollVelocityRow

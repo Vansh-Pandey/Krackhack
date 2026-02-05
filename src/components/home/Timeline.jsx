@@ -70,13 +70,14 @@ const timelineEvents = [
 
 const Timeline = () => {
   return (
-    <section className="relative w-full bg-white py-24 overflow-hidden">
+    <section className="relative w-full bg-white py-12 overflow-hidden">
+
       <div className="mx-auto max-w-5xl px-6">
 
         {/* TITLE */}
         <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 
-            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" 
+          <h2
+            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide"
             style={{ fontFamily: "BlueWinter" }}
           >
             <span className="text-[#EA4335]">T</span>
@@ -92,9 +93,9 @@ const Timeline = () => {
 
         {/* TIMELINE */}
         <div className="relative">
-          
+
           {/* VERTICAL LINE */}
-          <div 
+          <div
             className="
               absolute left-8 sm:left-12
               top-0 bottom-0
@@ -105,11 +106,11 @@ const Timeline = () => {
           />
 
           {/* TIMELINE EVENTS */}
-          <div className="space-y-8">
+          <div className="space-y-1">
             {timelineEvents.map((event, index) => {
               const Icon = event.icon
               const isEven = index % 2 === 0
-              
+
               return (
                 <div
                   key={index}
@@ -121,9 +122,9 @@ const Timeline = () => {
                 >
                   {/* DESKTOP LAYOUT */}
                   <div className="hidden md:flex items-center gap-8">
-                    
+
                     {/* DOT */}
-                    <div 
+                    <div
                       className="
                         relative z-10
                         shrink-0
@@ -139,7 +140,7 @@ const Timeline = () => {
                     </div>
 
                     {/* CONTENT */}
-                    <div 
+                    <div
                       className="
                         cursor-target
                         group
@@ -155,7 +156,7 @@ const Timeline = () => {
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
-                          <h3 
+                          <h3
                             className="font-bold text-xl sm:text-2xl mb-2"
                             style={{ fontFamily: "BlueWinter", color: event.color }}
                           >
@@ -166,7 +167,7 @@ const Timeline = () => {
                           </p>
                         </div>
                         <div className="text-right shrink-0">
-                          <div 
+                          <div
                             className="
                               inline-block
                               bg-white
@@ -176,7 +177,7 @@ const Timeline = () => {
                               shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
                             "
                           >
-                            <p 
+                            <p
                               className="font-bold text-sm"
                               style={{ fontFamily: "BlueWinter" }}
                             >
@@ -193,7 +194,7 @@ const Timeline = () => {
 
                   {/* MOBILE LAYOUT */}
                   <div className="md:hidden">
-                    <div 
+                    <div
                       className="
                         cursor-target
                         group
@@ -208,7 +209,7 @@ const Timeline = () => {
                     >
                       <div className="flex items-start gap-4 mb-4">
                         {/* ICON */}
-                        <div 
+                        <div
                           className="
                             shrink-0
                             w-12 h-12
@@ -224,7 +225,7 @@ const Timeline = () => {
 
                         {/* DATE/TIME */}
                         <div>
-                          <div 
+                          <div
                             className="
                               inline-block
                               bg-white
@@ -234,7 +235,7 @@ const Timeline = () => {
                               shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
                             "
                           >
-                            <p 
+                            <p
                               className="font-bold text-sm"
                               style={{ fontFamily: "BlueWinter" }}
                             >
@@ -248,7 +249,7 @@ const Timeline = () => {
                       </div>
 
                       {/* CONTENT */}
-                      <h3 
+                      <h3
                         className="font-bold text-lg mb-2"
                         style={{ fontFamily: "BlueWinter", color: event.color }}
                       >
@@ -266,7 +267,7 @@ const Timeline = () => {
         </div>
 
         {/* FOOTER NOTE */}
-        <div 
+        <div
           className="
             cursor-target
             mt-12
@@ -277,7 +278,7 @@ const Timeline = () => {
             text-center
           "
         >
-          <p 
+          <p
             className="font-bold text-lg sm:text-xl text-black mb-2"
             style={{ fontFamily: "BlueWinter" }}
           >

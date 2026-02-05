@@ -1,6 +1,6 @@
 // LoadingOverlay.jsx
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
+import Loading from "./Loading.jsx";
 
 export default function LoadingOverlay() {
   const [show, setShow] = useState(true);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import LoadingOverlay from "./components/loading/LoadingOverlay";
-import TargetCursor from "./components/ui/TargetCursor";
-import Home from "./pages/Home";
+import LoadingOverlay from "./components/loading/LoadingOverlay.jsx";
+import TargetCursor from "./components/ui/TargetCursor.jsx";
+import Home from "./pages/Home.jsx";
 
 export default function App() {
   const [loading, setLoading] = useState(true);

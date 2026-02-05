@@ -1,5 +1,4 @@
-import DinoGame from "../ui/DinoGame";
-import FloatingCircles from "../ui/FloatingCircles";
+import DinoGame from "../ui/DinoGame"; 
 
 const Hero = () => {
   return (
