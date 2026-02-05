@@ -48,9 +48,8 @@ const SponsorCard = ({ sponsor }) => {
         hover:translate-x-0.75 hover:translate-y-0.75
 
         flex items-center justify-center
-
-        /* 👇 THIS MAKES CARD ADAPT TO IMAGE */
-        h-auto min-h-[120px]
+ 
+        h-auto min-h-30
       "
     >
       <div className="
@@ -65,7 +64,7 @@ const SponsorCard = ({ sponsor }) => {
             w-auto
             h-auto
 
-            max-h-[160px]        /* cap height */
+            max-h-40        
             max-w-[95%]
 
             object-contain
