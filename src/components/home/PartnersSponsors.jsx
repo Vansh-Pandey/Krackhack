@@ -8,6 +8,9 @@ const sponsors = {
   ],
   associate: [
     { name: "Smolify AI", logo: "/sponsors/smolify.png", url: "#", tier: "Associate" }
+  ],
+  inkind: [
+    { name: "Featherless.ai", logo: "/sponsors/featherlessai.png", url: "#", tier: "InKind" }
   ]
 }
 
@@ -129,7 +132,7 @@ const PartnersSponsors = () => {
               className="font-bold text-2xl sm:text-3xl"
               style={{ fontFamily: "BlueWinter" }}
             >
-              Associate Sponsor
+              GenAI Track Sponsor
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -145,6 +148,29 @@ const PartnersSponsors = () => {
             ))}
           </div>
         </div>
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap className="w-8 h-8 text-[#4285F4]" strokeWidth={2.5} />
+            <h3
+              className="font-bold text-2xl sm:text-3xl"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              InKind sponsor
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sponsors.inkind.map((sponsor, index) => (
+              <div
+                key={index}
+                style={{
+                  animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
+                }}
+              >
+                <SponsorCard sponsor={sponsor} size="medium" />
+              </div>
+            ))}
+          </div>
+        </div> 
 
         {/* BECOME A SPONSOR CTA */}
         <div
