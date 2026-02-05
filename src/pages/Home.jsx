@@ -2,6 +2,9 @@ import React from "react"
 import Hero from "../components/home/Hero"
 import About from "../components/home/About"
 import PhotoGallery from "../components/home/PhotoGallery"
+import ParticipationGuidelines from "../components/home/ParticipationGuidelines"
+import Rulebook from "../components/home/Rulebook"
+import PartnersSponsors from "../components/home/PartnerSponsors" 
 
 import {
   ScrollVelocityContainer,
@@ -79,9 +82,13 @@ const Home = () => {
         </ScrollVelocityContainer>
       </BorderStrip>
 
+      <ParticipationGuidelines />
+
+      <Rulebook />
+
       <PhotoGallery />
 
-      {/* SCROLL STRIP — 3 (FINAL HYPE) */}
+      {/* SCROLL STRIP — 3 */}
       <BorderStrip>
         <ScrollVelocityContainer className="py-6">
           <ScrollVelocityRow
@@ -102,6 +109,24 @@ const Home = () => {
 
           >
             DREAM • BUILD • DEPLOY • DOMINATE •
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
+      </BorderStrip>
+
+      <PartnersSponsors />
+ 
+
+      {/* FINAL SCROLL STRIP */}
+      <BorderStrip>
+        <ScrollVelocityContainer className="py-5">
+          <ScrollVelocityRow
+            baseVelocity={20}
+            direction={1}
+            className="text-3xl md:text-6xl font-bluewinter  font-bold tracking-widest text-black"
+            style={{ fontFamily: "BlueWinter" }}
+
+          >
+            SEE YOU AT KRACKHACK • LET&apos;S BUILD SOMETHING AMAZING •
           </ScrollVelocityRow>
         </ScrollVelocityContainer>
       </BorderStrip>
