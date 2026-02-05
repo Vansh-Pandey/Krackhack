@@ -5,6 +5,12 @@ import PhotoGallery from "../components/home/PhotoGallery"
 import ParticipationGuidelines from "../components/home/ParticipationGuidelines"
 import Rulebook from "../components/home/Rulebook"
 import PartnersSponsors from "../components/home/PartnerSponsors" 
+import Domains from "../components/home/Domain"
+import Judging from "../components/home/Judging"
+import Timeline from "../components/home/Timeline"
+import FAQs from "../components/home/Faqs"
+import POCs from "../components/home/POCs"
+import Footer from "../components/home/Footer"
 
 import {
   ScrollVelocityContainer,
@@ -82,9 +88,15 @@ const Home = () => {
         </ScrollVelocityContainer>
       </BorderStrip>
 
+      <Domains />
+
+      <Timeline />
+
       <ParticipationGuidelines />
 
       <Rulebook />
+
+      <Judging />
 
       <PhotoGallery />
 
@@ -114,6 +126,10 @@ const Home = () => {
       </BorderStrip>
 
       <PartnersSponsors />
+
+      <FAQs />
+
+      <POCs />
  
 
       {/* FINAL SCROLL STRIP */}
@@ -130,6 +146,8 @@ const Home = () => {
           </ScrollVelocityRow>
         </ScrollVelocityContainer>
       </BorderStrip>
+
+      <Footer />
     </>
   )
 }

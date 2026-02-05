@@ -51,17 +51,32 @@ const About = () => {
 
             {/* CONTENT */}
             <div className="cursor-target bg-white border-4 border-black p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] max-w-xl">
+
               <p className="font-monospace text-base sm:text-lg leading-relaxed text-gray-800">
-                <strong>KrackHack</strong> is a high-energy hackathon where curious minds
-                come together to <strong>build</strong>, <strong>break</strong>, and{" "}
-                <strong>reimagine</strong> ideas. Whether you're a beginner or a seasoned
-                hacker, KrackHack is your playground to experiment, collaborate, and ship fast.
+                <strong>KrackHack</strong> is a 48-hour student hackathon organised by GDG on Campus, IIT Mandi, bringing together developers, designers, and problem-solvers to build impactful solutions across diverse technology domains.
               </p>
 
               <p className="font-monospace text-base sm:text-lg leading-relaxed text-gray-800 mt-4">
-                Expect real-world problems, late-night debugging, creative chaos,
-                and a whole lot of fun 🚀
+                <strong>Purpose</strong>
               </p>
+
+              <ul className="font-monospace text-base sm:text-lg leading-relaxed text-gray-800 list-disc ml-5 mt-2">
+                <li>Encourage hands-on building</li>
+                <li>Promote learning through real-world problem statements</li>
+                <li>Provide exposure to industry-aligned domains</li>
+                <li>Create a collaborative student tech ecosystem</li>
+              </ul>
+
+              <p className="font-monospace text-base sm:text-lg leading-relaxed text-gray-800 mt-4">
+                <strong>Who can participate</strong>
+              </p>
+
+              <ul className="font-monospace text-base sm:text-lg leading-relaxed text-gray-800 list-disc ml-5 mt-2">
+                <li>College students</li>
+                <li>Beginners to advanced developers</li>
+                <li>Teams passionate about building and learning</li>
+              </ul>
+
             </div>
           </div>
 
