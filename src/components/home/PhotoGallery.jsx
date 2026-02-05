@@ -2,11 +2,11 @@ import React from "react"
 
 const images = [
   {
-    src: "/gallery/1.jpg",
+    src: "/gallery/1.jpeg",
     alt: "KrackHack Hackathon Moment 1",
   },
   {
-    src: "/gallery/2.jpg",
+    src: "/gallery/2.jpeg",
     alt: "KrackHack Hackathon Moment 2",
   },
   {
@@ -22,7 +22,7 @@ const images = [
     alt: "KrackHack Hackathon Moment 5",
   },
   {
-    src: "/gallery/6.png",
+    src: "/gallery/6.jpeg",
     alt: "KrackHack Hackathon Moment 6",
   },
 ]
