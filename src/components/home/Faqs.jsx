@@ -67,8 +67,8 @@ const FAQs = () => {
 
         {/* TITLE */}
         <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 
-            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" 
+          <h2
+            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide"
             style={{ fontFamily: "BlueWinter" }}
           >
             <span className="text-[#EA4335]">F</span>
@@ -82,7 +82,7 @@ const FAQs = () => {
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isExpanded = expandedIndex === index
-            
+
             return (
               <div
                 key={index}
@@ -112,7 +112,7 @@ const FAQs = () => {
                 >
                   <div className="flex items-center gap-4 flex-1">
                     {/* ICON */}
-                    <div 
+                    <div
                       className="
                         shrink-0
                         w-10 h-10
@@ -120,7 +120,7 @@ const FAQs = () => {
                         border-4 border-black
                         transition-transform duration-300
                       "
-                      style={{ 
+                      style={{
                         backgroundColor: faq.color,
                         transform: isExpanded ? 'scale(1.1) rotate(180deg)' : 'scale(1) rotate(0deg)'
                       }}
@@ -129,7 +129,7 @@ const FAQs = () => {
                     </div>
 
                     {/* QUESTION */}
-                    <h3 
+                    <h3
                       className="font-bold text-lg sm:text-xl flex-1"
                       style={{ fontFamily: "BlueWinter" }}
                     >
@@ -138,7 +138,7 @@ const FAQs = () => {
                   </div>
 
                   {/* CHEVRON */}
-                  <ChevronDown 
+                  <ChevronDown
                     className={`
                       w-6 h-6 
                       shrink-0
@@ -151,14 +151,14 @@ const FAQs = () => {
                 </button>
 
                 {/* ANSWER */}
-                <div 
+                <div
                   className={`
                     overflow-hidden
                     transition-all duration-500
                     ${isExpanded ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'}
                   `}
                 >
-                  <div 
+                  <div
                     className="p-6 pt-0 border-t-4 border-black"
                     style={{
                       animation: isExpanded ? 'fadeIn 0.4s ease-out' : 'none'
@@ -175,7 +175,7 @@ const FAQs = () => {
         </div>
 
         {/* STILL HAVE QUESTIONS */}
-        <div 
+        <div
           className="
             cursor-target
             mt-12
@@ -189,7 +189,7 @@ const FAQs = () => {
             hover:translate-x-1 hover:translate-y-1
           "
         >
-          <h3 
+          <h3
             className="font-bold text-2xl sm:text-3xl mb-4"
             style={{ fontFamily: "BlueWinter" }}
           >
@@ -198,25 +198,32 @@ const FAQs = () => {
           <p className="text-gray-700 text-lg mb-6">
             Our team is here to help! Reach out to us anytime.
           </p>
-          <button
-            className="
-              cursor-target
-              px-8 py-4
-              bg-white
-              border-4 border-[#4285F4]
-              text-[#4285F4]
-              font-bold
-              text-lg
-              shadow-[6px_6px_0px_0px_#4285F4]
-              hover:shadow-[3px_3px_0px_0px_#4285F4]
-              hover:translate-x-0.75 hover:translate-y-0.75
-              transition-all duration-200
-              active:shadow-none
-            "
-            style={{ fontFamily: "BlueWinter" }}
+          <a
+            href="https://www.linkedin.com/company/google-developer-groups-iit-mandi/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            CONTACT US
-          </button>
+            <button
+              className="
+      cursor-target
+      px-8 py-4
+      bg-white
+      border-4 border-[#4285F4]
+      text-[#4285F4]
+      font-bold
+      text-lg
+      shadow-[6px_6px_0px_0px_#4285F4]
+      hover:shadow-[3px_3px_0px_0px_#4285F4]
+      hover:translate-x-0.75 hover:translate-y-0.75
+      transition-all duration-200
+      active:shadow-none
+    "
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              CONTACT US
+            </button>
+          </a>
+
         </div>
 
       </div>

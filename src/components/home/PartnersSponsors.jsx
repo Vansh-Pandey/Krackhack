@@ -49,9 +49,9 @@ const SponsorCard = ({ sponsor, size = "medium" }) => {
       object-contain
       mx-auto
     "
-        /> 
+        />
       </div>
- 
+
 
       <div className="
         absolute inset-0
@@ -169,26 +169,33 @@ const PartnersSponsors = () => {
           <p className="text-gray-700 text-lg mb-6 max-w-2xl mx-auto">
             Join us in supporting the next generation of innovators and help make KrackHack an unforgettable experience!
           </p>
-          <button
-            className="
-              cursor-target
-              px-8 sm:px-12
-              py-4 sm:py-5
-              bg-white
-              border-4 border-[#34A853]
-              text-[#34A853]
-              font-bold
-              text-lg sm:text-xl
-              shadow-[6px_6px_0px_0px_#34A853]
-              hover:shadow-[3px_3px_0px_0px_#34A853]
-              hover:translate-x-1 hover:translate-y-1
-              transition-all duration-200
-              active:shadow-none
-            "
-            style={{ fontFamily: "BlueWinter" }}
+          <a
+            href="https://www.linkedin.com/company/google-developer-groups-iit-mandi/"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            BECOME A SPONSOR
-          </button>
+            <button
+              className="
+      cursor-target
+      px-8 sm:px-12
+      py-4 sm:py-5
+      bg-white
+      border-4 border-[#34A853]
+      text-[#34A853]
+      font-bold
+      text-lg sm:text-xl
+      shadow-[6px_6px_0px_0px_#34A853]
+      hover:shadow-[3px_3px_0px_0px_#34A853]
+      hover:translate-x-1 hover:translate-y-1
+      transition-all duration-200
+      active:shadow-none
+    "
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              BECOME A SPONSOR
+            </button>
+          </a>
+
         </div>
 
       </div>

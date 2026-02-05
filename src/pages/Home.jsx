@@ -87,7 +87,20 @@ const Home = () => {
       </BorderStrip>
 
       <Domains />
+ <BorderStrip>
+        <ScrollVelocityContainer className="py-5">
+          <ScrollVelocityRow
+            baseVelocity={22}
+            direction={1}
+            className="text-2xl md:text-5xl font-bluewinter  font-bold tracking-wide text-black"
+            style={{ fontFamily: "BlueWinter" }}
 
+          >
+            •PARTICIPATE TO BECOME COOL•
+          </ScrollVelocityRow>
+ 
+        </ScrollVelocityContainer>
+      </BorderStrip>
       <Timeline />
 
       <ParticipationGuidelines />

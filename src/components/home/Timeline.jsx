@@ -282,7 +282,7 @@ const Timeline = () => {
             className="font-bold text-lg sm:text-xl text-black mb-2"
             style={{ fontFamily: "BlueWinter" }}
           >
-            Mark Your Calendars! 📅
+            Mark Your Calendars! 
           </p>
           <p className="text-gray-600 text-base sm:text-lg">
             All times are in IST. Schedule is subject to minor changes.
