@@ -4,7 +4,7 @@ import { Linkedin, Instagram, Globe, Twitter, ExternalLink } from "lucide-react"
 const socialLinks = [
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/company/gdg-iit-mandi",
+    url: "https://www.linkedin.com/company/google-developer-groups-iit-mandi/",
     icon: Linkedin,
     color: "#4285F4",
     handle: "Google Developer Groups IIT Mandi"
@@ -32,7 +32,7 @@ const socialLinks = [
   },
   {
     name: "GDG Event Platform",
-    url: "https://gdg.community.dev/gdg-on-campus-iit-mandi",
+    url: "https://gdg.community.dev/gdg-on-campus-indian-institute-of-technology-mandi-india/",
     icon: ExternalLink,
     color: "#FBBC05",
     handle: "GDG on Campus IIT Mandi"
