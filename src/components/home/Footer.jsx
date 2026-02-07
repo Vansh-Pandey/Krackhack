@@ -54,10 +54,10 @@ const Footer = () => {
 
         {/* MAIN CONTENT */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          
+
           {/* ABOUT SECTION */}
           <div>
-            <h3 
+            <h3
               className="font-bold text-3xl sm:text-4xl mb-4 text-white"
               style={{ fontFamily: "BlueWinter" }}
             >
@@ -82,7 +82,7 @@ const Footer = () => {
 
           {/* QUICK LINKS */}
           <div>
-            <h4 
+            <h4
               className="font-bold text-xl mb-4 text-white"
               style={{ fontFamily: "BlueWinter" }}
             >
@@ -90,8 +90,8 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a 
-                  href="#about" 
+                <a
+                  href="#about"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#4285F4] group-hover:w-4 transition-all duration-200" />
@@ -99,8 +99,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#domains" 
+                <a
+                  href="#domains"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#EA4335] group-hover:w-4 transition-all duration-200" />
@@ -108,8 +108,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#timeline" 
+                <a
+                  href="#timeline"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#FBBC05] group-hover:w-4 transition-all duration-200" />
@@ -117,8 +117,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="#faqs" 
+                <a
+                  href="#faqs"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#34A853] group-hover:w-4 transition-all duration-200" />
@@ -126,8 +126,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://luma.com/m92p8v92" 
+                <a
+                  href="https://luma.com/m92p8v92"
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#4285F4] group-hover:w-4 transition-all duration-200" />
@@ -139,24 +139,24 @@ const Footer = () => {
 
           {/* CONTACT INFO */}
           <div>
-            <h4 
+            <h4
               className="font-bold text-xl mb-4 text-white"
               style={{ fontFamily: "BlueWinter" }}
             >
               Get In Touch
             </h4>
             <div className="space-y-3">
-              <a 
+              <a
                 href="mailto:krackhack@iitmandi.ac.in"
                 className="text-gray-400 hover:text-[#4285F4] transition-colors duration-200 block"
               >
-                gdgiitmandi@gmail.com 
+                gdgiitmandi@gmail.com
               </a>
-              <a 
+              <a
                 href="tel:+919876543210"
                 className="text-gray-400 hover:text-[#34A853] transition-colors duration-200 block"
               >
-               +91 78400 52725
+                +91 78400 52725
               </a>
               <p className="text-gray-500 text-sm mt-4">
                 IIT Mandi, Kamand<br />
@@ -169,7 +169,7 @@ const Footer = () => {
         </div>
 
         {/* SOCIAL LINKS */}
-        <div 
+        <div
           className="
             bg-white
             border-4 border-white
@@ -178,13 +178,13 @@ const Footer = () => {
             mb-12
           "
         >
-          <h4 
+          <h4
             className="font-bold text-2xl mb-6 text-center"
             style={{ fontFamily: "BlueWinter" }}
           >
             Connect With Us
           </h4>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {socialLinks.map((social, index) => {
               const Icon = social.icon
@@ -211,7 +211,7 @@ const Footer = () => {
                   }}
                 >
                   {/* ICON */}
-                  <div 
+                  <div
                     className="
                       w-12 h-12
                       flex items-center justify-center
@@ -227,7 +227,7 @@ const Footer = () => {
                   </div>
 
                   {/* NAME */}
-                  <p 
+                  <p
                     className="font-bold text-sm mb-1"
                     style={{ fontFamily: "BlueWinter", color: social.color }}
                   >
@@ -247,34 +247,19 @@ const Footer = () => {
         {/* BOTTOM BAR */}
         <div className="border-t-4 border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            
+
             {/* COPYRIGHT */}
-            <p className="text-gray-500 text-sm text-center md:text-left">
-              © 2025 KrackHack. All rights reserved. <br className="md:hidden" />
-              Organized with ❤️ by GDG IIT Mandi
+            <p className="text-gray-500 text-sm text-center md:text-left flex items-center gap-2 justify-center md:justify-start">
+              © 202 KrackHack. All rights reserved. 
+              <img
+                src="/gdg-logo.png"
+                alt="GDG IIT Mandi"
+                className="h-5 inline-block ml-1"
+              />
             </p>
 
-            {/* LEGAL LINKS */}
-            <div className="flex gap-6">
-              <a 
-                href="#privacy" 
-                className="text-gray-500 hover:text-white text-sm transition-colors duration-200"
-              >
-                Privacy Policy
-              </a>
-              <a 
-                href="#terms" 
-                className="text-gray-500 hover:text-white text-sm transition-colors duration-200"
-              >
-                Terms of Service
-              </a>
-              <a 
-                href="#conduct" 
-                className="text-gray-500 hover:text-white text-sm transition-colors duration-200"
-              >
-                Code of Conduct
-              </a>
-            </div>
+
+           
 
           </div>
 
