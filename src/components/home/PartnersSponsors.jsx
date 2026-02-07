@@ -10,11 +10,19 @@ const sponsors = {
   associate: [
     { name: "Smolify AI", logo: "/sponsors/smolify.png", url: "#", tier: "Associate" }
   ],
-
-  inkind: [
-    { name: "Featherless.ai", logo: "/sponsors/featherlessai.png", url: "#", tier: "InKind" }
+  blockchain: [
+    { name: "Hela", logo: "/sponsors/hela.jpeg", url: "#", tier: "Blockchain Track Sponsor" }
   ],
 
+  inkind: [
+    { name: "Featherless.ai", logo: "/sponsors/featherlessai.png", url: "#", tier: "InKind" },
+    { name: "Give My Certificates", logo: "/sponsors/givemycertificates.png", url: "#", tier: "InKind" },
+    { name: ".xyz", logo: "/sponsors/xyz.png", url: "#", tier: "InKind" },
+    { name: "n8n", logo: "/sponsors/n8n.png", url: "#", tier: "InKind" }
+  ],
+  platform: [
+    { name: "DoraHacks", logo: "/sponsors/dorahacks.png", url: "#", tier: "Platform" }
+  ],
   community: [
     { name: "GDG VU", logo: "/sponsors/gdg_vu.jpeg", url: "#", tier: "Community Partner" },
 
@@ -164,7 +172,7 @@ const PartnersSponsors = () => {
                   animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
                 }}
               >
-                <SponsorCard sponsor={sponsor}  />
+                <SponsorCard sponsor={sponsor} />
               </div>
             ))}
           </div>
@@ -176,7 +184,53 @@ const PartnersSponsors = () => {
               className="font-bold text-2xl sm:text-3xl"
               style={{ fontFamily: "BlueWinter" }}
             >
-              InKind sponsor
+              BloackChain Track Sponsor
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sponsors.blockchain.map((sponsor, index) => (
+              <div
+                key={index}
+                style={{
+                  animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
+                }}
+              >
+                <SponsorCard sponsor={sponsor} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap className="w-8 h-8 text-[#4285F4]" strokeWidth={2.5} />
+            <h3
+              className="font-bold text-2xl sm:text-3xl"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              Platform Sponsor
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sponsors.platform.map((sponsor, index) => (
+              <div
+                key={index}
+                style={{
+                  animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
+                }}
+              >
+                <SponsorCard sponsor={sponsor} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap className="w-8 h-8 text-[#4285F4]" strokeWidth={2.5} />
+            <h3
+              className="font-bold text-2xl sm:text-3xl"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              InKind Sponsor
             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -187,11 +241,11 @@ const PartnersSponsors = () => {
                   animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
                 }}
               >
-                <SponsorCard sponsor={sponsor}  />
+                <SponsorCard sponsor={sponsor} />
               </div>
             ))}
           </div>
-        </div> 
+        </div>
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Zap className="w-8 h-8 text-[#4285F4]" strokeWidth={2.5} />
@@ -210,12 +264,12 @@ const PartnersSponsors = () => {
                   animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
                 }}
               >
-                <SponsorCard sponsor={sponsor}  />
+                <SponsorCard sponsor={sponsor} />
               </div>
             ))}
           </div>
-        </div> 
- 
+        </div>
+
         <div
           className="
             cursor-target
