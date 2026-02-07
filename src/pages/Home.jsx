@@ -1,4 +1,3 @@
- 
 import Hero from "../components/home/Hero.jsx"
 import About from "../components/home/About.jsx"
 import PhotoGallery from "../components/home/PhotoGallery.jsx"
@@ -11,6 +10,7 @@ import Timeline from "../components/home/Timeline.jsx"
 import FAQs from "../components/home/Faqs.jsx"
 import POCs from "../components/home/POCs.jsx"
 import Footer from "../components/home/Footer.jsx"
+import Hotbar from "../components/home/Hotbar.jsx"
 
 import {
   ScrollVelocityContainer,
@@ -34,7 +34,11 @@ const BorderStrip = ({ children }) => (
 const Home = () => {
   return (
     <>
-      <Hero />
+      <Hotbar />
+      
+      <div id="hero">
+        <Hero />
+      </div>
  
       <BorderStrip>
         <ScrollVelocityContainer className="py-5">
@@ -60,7 +64,9 @@ const Home = () => {
         </ScrollVelocityContainer>
       </BorderStrip>
 
-      <About />
+      <div id="about">
+        <About />
+      </div>
  
       <BorderStrip>
         <ScrollVelocityContainer className="py-5">
@@ -86,8 +92,11 @@ const Home = () => {
         </ScrollVelocityContainer>
       </BorderStrip>
 
-      <Domains />
- <BorderStrip>
+      <div id="domains">
+        <Domains />
+      </div>
+      
+      <BorderStrip>
         <ScrollVelocityContainer className="py-5">
           <ScrollVelocityRow
             baseVelocity={22}
@@ -101,15 +110,24 @@ const Home = () => {
  
         </ScrollVelocityContainer>
       </BorderStrip>
-      <Timeline />
+      
+      <div id="timeline">
+        <Timeline />
+      </div>
 
-      <ParticipationGuidelines />
+      <div id="guidelines">
+        <ParticipationGuidelines />
+      </div>
 
       <Rulebook />
 
-      <Judging />
+      <div id="judging">
+        <Judging />
+      </div>
 
-      <PhotoGallery />
+      <div id="gallery">
+        <PhotoGallery />
+      </div>
  
       <BorderStrip>
         <ScrollVelocityContainer className="py-6">
@@ -137,9 +155,13 @@ const Home = () => {
 
       <PartnersSponsors />
 
-      <FAQs />
+      <div id="faqs">
+        <FAQs />
+      </div>
 
-      <POCs />
+      <div id="pocs">
+        <POCs />
+      </div>
  
  
       <BorderStrip>
