@@ -127,7 +127,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="#register" 
+                  href="https://dorahacks.io/hackathon/krackhack/detail" 
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#4285F4] group-hover:w-4 transition-all duration-200" />
@@ -150,7 +150,7 @@ const Footer = () => {
                 href="mailto:krackhack@iitmandi.ac.in"
                 className="text-gray-400 hover:text-[#4285F4] transition-colors duration-200 block"
               >
-                krackhack@iitmandi.ac.in
+                gdgiitmandi@gmail.com 
               </a>
               <a 
                 href="tel:+919876543210"

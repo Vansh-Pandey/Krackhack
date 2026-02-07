@@ -196,7 +196,7 @@ const POCs = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="mailto:krackhack@iitmandi.ac.in"
+              href="mailto:gdgiitmandi@gmail.com "
               className="
                 cursor-target
                 flex items-center justify-center gap-2
@@ -213,7 +213,7 @@ const POCs = () => {
               style={{ fontFamily: "BlueWinter" }}
             >
               <Mail className="w-5 h-5" strokeWidth={2.5} />
-              krackhack@iitmandi.ac.in
+              gdgiitmandi@gmail.com 
             </a>
             <a
               href="tel:+919876543210"
