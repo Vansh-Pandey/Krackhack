@@ -1,8 +1,19 @@
 import { useState, useEffect } from "react"
-import { Home, User, Folder, Clock, HelpCircle, Users, Image, Book, Scale } from "lucide-react"
+import {
+  Home,
+  User,
+  Folder,
+  Clock,
+  HelpCircle,
+  Users,
+  Image,
+  Book,
+  Scale,
+} from "lucide-react"
 
 const Hotbar = () => {
   const [activeSection, setActiveSection] = useState("hero")
+  const [isMobile, setIsMobile] = useState(false)
 
   const navItems = [
     { id: "hero", label: "HOME", icon: Home, color: "#34A853" },
@@ -16,10 +27,23 @@ const Hotbar = () => {
     { id: "pocs", label: "TEAM", icon: Users, color: "#34A853" },
   ]
 
+  // ===== Detect Mobile =====
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
+
+  // ===== Scroll Spy =====
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map(item => document.getElementById(item.id))
-      const scrollPosition = window.scrollY + 300
+      const sections = navItems.map((item) =>
+        document.getElementById(item.id)
+      )
+
+      const offset = isMobile ? 180 : 300
+      const scrollPosition = window.scrollY + offset
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i]
@@ -32,46 +56,53 @@ const Hotbar = () => {
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMobile])
 
+  // ===== Smooth Scroll =====
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
+
     if (element) {
-      const yOffset = -80
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+      const yOffset = isMobile ? -60 : -80
+      const y =
+        element.getBoundingClientRect().top +
+        window.scrollY +
+        yOffset
+
       window.scrollTo({ top: y, behavior: "smooth" })
     }
   }
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] flex justify-center pb-4 sm:pb-6 px-2 sm:px-4 pointer-events-none">
-      {/* Desktop/Tablet Hotbar - Hidden on mobile */}
+      {/* ===== MAIN HOTBAR ===== */}
       <div
         className="
-          hidden md:flex
+          max-w-[98vw] sm:max-w-none
+          overflow-x-auto sm:overflow-visible
           bg-white border-4 border-black
           shadow-[0px_-8px_0px_0px_rgba(0,0,0,1)]
-          rounded-full
-          px-4 py-3
+          rounded-[28px] sm:rounded-full
+          px-2 sm:px-4 py-2 sm:py-3
           pointer-events-auto
-          max-w-[95vw]
-          overflow-x-auto
         "
       >
-        <nav className="flex items-center gap-2">
+        <nav className="flex items-center gap-1 sm:gap-2">
           {navItems.map((item, index) => {
             const Icon = item.icon
             const isActive = activeSection === item.id
 
             return (
-              <div key={item.id} className="relative group">
-                {/* Icon Button */}
+              <div key={item.id} className="relative group shrink-0">
+                {/* ===== ICON BUTTON ===== */}
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className="
                     relative
-                    w-14 h-14
-                    bg-white border-4
+                    w-10 h-10
+                    xs:w-11 xs:h-11
+                    sm:w-14 sm:h-14
+                    bg-white border-[3px] sm:border-4
                     rounded-full
                     flex items-center justify-center
                     transition-all duration-300
@@ -82,17 +113,23 @@ const Hotbar = () => {
                     boxShadow: isActive
                       ? `0px 6px 0px 0px ${item.color}`
                       : "0px 4px 0px 0px rgba(0,0,0,1)",
-                    transform: isActive ? "translateY(-8px)" : "translateY(0)",
+                    transform: isActive
+                      ? isMobile
+                        ? "translateY(-5px)"
+                        : "translateY(-8px)"
+                      : "translateY(0)",
                   }}
                 >
                   <Icon
-                    className="w-6 h-6"
+                    className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6"
                     strokeWidth={2.5}
-                    style={{ color: isActive ? item.color : "black" }}
+                    style={{
+                      color: isActive ? item.color : "black",
+                    }}
                   />
                 </button>
 
-                {/* Label Tooltip */}
+                {/* ===== TOOLTIP (NOW VISIBLE ON MOBILE TOO) ===== */}
                 <div
                   className="
                     absolute bottom-full left-1/2 -translate-x-1/2 mb-3
@@ -121,10 +158,11 @@ const Hotbar = () => {
                       {item.label}
                     </span>
                   </div>
-                  {/* Tooltip Arrow */}
+
+                  {/* Arrow */}
                   <div
                     className="absolute top-full left-1/2 -translate-x-1/2 -mt-1"
-                    style={{ 
+                    style={{
                       width: 0,
                       height: 0,
                       borderLeft: "6px solid transparent",
@@ -134,109 +172,14 @@ const Hotbar = () => {
                   />
                 </div>
 
-                {/* Separator */}
+                {/* ===== SEPARATOR ===== */}
                 {index < navItems.length - 1 && (
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-0.5 h-6 bg-black/20" />
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-0.5 h-4 sm:h-6 bg-black/20" />
                 )}
               </div>
             )
           })}
         </nav>
-      </div>
-
-      {/* Tablet Version - shows on medium screens */}
-      <div
-        className="
-          hidden sm:flex md:hidden
-          bg-white border-4 border-black
-          shadow-[0px_-8px_0px_0px_rgba(0,0,0,1)]
-          rounded-full
-          px-3 py-2.5
-          pointer-events-auto
-          max-w-[95vw]
-        "
-      >
-        <nav className="flex items-center gap-1.5">
-          {navItems.map((item) => {
-            const Icon = item.icon
-            const isActive = activeSection === item.id
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="
-                  w-11 h-11
-                  bg-white border-3
-                  rounded-full
-                  flex items-center justify-center
-                  transition-all duration-300
-                "
-                style={{
-                  borderColor: isActive ? item.color : "black",
-                  borderWidth: "3px",
-                  boxShadow: isActive
-                    ? `0px 4px 0px 0px ${item.color}`
-                    : "0px 3px 0px 0px rgba(0,0,0,1)",
-                  transform: isActive ? "translateY(-6px)" : "translateY(0)",
-                }}
-              >
-                <Icon
-                  className="w-5 h-5"
-                  strokeWidth={2.5}
-                  style={{ color: isActive ? item.color : "black" }}
-                />
-              </button>
-            )
-          })}
-        </nav>
-      </div>
-
-      {/* Mobile Compact Version - shows on small screens */}
-      <div
-        className="
-          flex sm:hidden
-          bg-white border-4 border-black
-          shadow-[0px_-6px_0px_0px_rgba(0,0,0,1)]
-          rounded-full
-          px-2 py-2
-          pointer-events-auto
-          gap-0.5
-        "
-      >
-        {navItems.slice(0, 6).map((item) => {
-          const Icon = item.icon
-          const isActive = activeSection === item.id
-
-          return (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="
-                w-10 h-10
-                bg-white
-                rounded-full
-                flex items-center justify-center
-                transition-all duration-300
-              "
-              style={{
-                borderColor: isActive ? item.color : "black",
-                borderWidth: "3px",
-                borderStyle: "solid",
-                boxShadow: isActive
-                  ? `0px 3px 0px 0px ${item.color}`
-                  : "0px 2px 0px 0px rgba(0,0,0,1)",
-                transform: isActive ? "translateY(-4px)" : "translateY(0)",
-              }}
-            >
-              <Icon
-                className="w-4 h-4"
-                strokeWidth={2.5}
-                style={{ color: isActive ? item.color : "black" }}
-              />
-            </button>
-          )
-        })}
       </div>
     </div>
   )
