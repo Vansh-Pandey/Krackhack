@@ -7,13 +7,7 @@ const domains = [
     icon: Globe, 
     color: "#EA4335",
     description: "Build responsive web applications and platforms"
-  },
-  { 
-    name: "App Development", 
-    icon: Smartphone, 
-    color: "#4285F4",
-    description: "Create mobile applications for iOS and Android"
-  },
+  } ,
   { 
     name: "Blockchain", 
     icon: Link2, 

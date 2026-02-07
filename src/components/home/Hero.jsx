@@ -1,9 +1,7 @@
 import { useState } from "react"
-import DinoGame from "../ui/DinoGame"
-import RegistrationModal from "./RegistrationModal"
+import DinoGame from "../ui/DinoGame" 
 
-const Hero = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+const Hero = () => { 
 
   return (
     <>
@@ -111,8 +109,12 @@ const Hero = () => {
               pointer-events-auto
             "
           >
-            <button
-              onClick={() => setIsModalOpen(true)}
+            <a
+              href="https://dorahacks.io/hackathon/krackhack/detail"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+            <button 
               className="
                 cursor-target
                 w-full sm:w-auto
@@ -133,7 +135,7 @@ const Hero = () => {
             >
               REGISTER
             </button>
-
+            </a>
             <a
               href="https://gdg.iitmandi.co.in/"
               target="_blank"
@@ -166,11 +168,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Registration Modal */}
-      <RegistrationModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+       
     </>
   )
 }

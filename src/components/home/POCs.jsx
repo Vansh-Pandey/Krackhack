@@ -10,13 +10,6 @@ const pocs = [
     color: "#EA4335"
   },
   {
-    name: "Vishwas",
-    role: "App Dev",
-    email: "vishwas@example.com",
-    phone: "+91 98765 43211",
-    color: "#4285F4"
-  },
-  {
     name: "Vipresh",
     role: "Gen AI",
     email: "vipresh@example.com",
