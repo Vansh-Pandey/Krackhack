@@ -213,7 +213,7 @@ const POCs = () => {
               style={{ fontFamily: "BlueWinter" }}
             >
               <Phone className="w-5 h-5" strokeWidth={2.5} />
-              +91 70156 11259
+              +91 78400 52725
             </a>
           </div>
         </div>

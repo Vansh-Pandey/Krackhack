@@ -156,7 +156,7 @@ const Footer = () => {
                 href="tel:+919876543210"
                 className="text-gray-400 hover:text-[#34A853] transition-colors duration-200 block"
               >
-               +91 70156 11259
+               +91 78400 52725
               </a>
               <p className="text-gray-500 text-sm mt-4">
                 IIT Mandi, Kamand<br />
