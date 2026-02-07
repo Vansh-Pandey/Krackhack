@@ -1,5 +1,5 @@
 import { useState } from "react"
-import DinoGame from "../ui/DinoGame" 
+import DinoGame from "../ui/DinoGame.jsx" 
 
 const Hero = () => { 
 
