@@ -110,7 +110,7 @@ const Hero = () => {
             "
           >
             <a
-              href="https://dorahacks.io/hackathon/krackhack/detail"
+              href="https://luma.com/m92p8v92"
               target="_blank"
               rel="noopener noreferrer"
             >

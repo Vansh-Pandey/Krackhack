@@ -127,7 +127,7 @@ const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="https://dorahacks.io/hackathon/krackhack/detail" 
+                  href="https://luma.com/m92p8v92" 
                   className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
                   <span className="w-0 h-0.5 bg-[#4285F4] group-hover:w-4 transition-all duration-200" />
