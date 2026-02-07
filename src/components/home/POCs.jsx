@@ -4,51 +4,44 @@ import { Mail, Phone, User } from "lucide-react"
 const pocs = [
   {
     name: "Akshat",
-    role: "AI/ML",
-    email: "akshat@example.com",
-    phone: "+91 98765 43210",
+    role: "AI/ML", 
+    phone: "+91 87662 26219",
     color: "#EA4335"
   },
   {
     name: "Vipresh",
-    role: "Gen AI",
-    email: "vipresh@example.com",
-    phone: "+91 98765 43212",
+    role: "Gen AI", 
+    phone: "+91 79735 74307",
     color: "#FBBC05"
   },
   {
     name: "Vansh",
-    role: "Web Dev",
-    email: "vansh@example.com",
-    phone: "+91 98765 43213",
+    role: "Web Dev", 
+    phone: "+91 78400 52725",
     color: "#34A853"
   },
   {
     name: "Harsh",
-    role: "Cybersecurity",
-    email: "harsh@example.com",
-    phone: "+91 98765 43214",
+    role: "Cybersecurity", 
+    phone: "+91 95188 30309",
     color: "#EA4335"
   },
   {
     name: "James",
-    role: "Blockchain",
-    email: "james@example.com",
-    phone: "+91 98765 43215",
+    role: "Blockchain", 
+    phone: "+91 88495 56496",
     color: "#4285F4"
   },
   {
     name: "Khushbu",
-    role: "Registration",
-    email: "khushbu@example.com",
-    phone: "+91 98765 43216",
+    role: "Registration", 
+    phone: "+91 95880 72217",
     color: "#FBBC05"
   },
   {
     name: "Ridhhi",
-    role: "Submissions",
-    email: "ridhhi@example.com",
-    phone: "+91 98765 43217",
+    role: "Submissions", 
+    phone: "+91 96509 97560",
     color: "#34A853"
   }
 ]
@@ -140,20 +133,7 @@ const POCs = () => {
 
               {/* CONTACT INFO */}
               <div className="space-y-2">
-                {/* EMAIL */}
-                <a
-                  href={`mailto:${poc.email}`}
-                  className="
-                    flex items-center gap-2
-                    text-gray-700 text-sm
-                    hover:text-black
-                    transition-colors duration-200
-                    group/link
-                  "
-                >
-                  <Mail className="w-4 h-4 shrink-0 group-hover/link:scale-110 transition-transform" strokeWidth={2.5} />
-                  <span className="truncate">{poc.email}</span>
-                </a>
+                
 
                 {/* PHONE */}
                 <a
@@ -233,7 +213,7 @@ const POCs = () => {
               style={{ fontFamily: "BlueWinter" }}
             >
               <Phone className="w-5 h-5" strokeWidth={2.5} />
-              +91 98765 43210
+              +91 70156 11259
             </a>
           </div>
         </div>
