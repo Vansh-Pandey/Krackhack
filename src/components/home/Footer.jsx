@@ -256,10 +256,7 @@ const Footer = () => {
                 alt="GDG IIT Mandi"
                 className="h-5 inline-block ml-1"
               />
-            </p>
-
-
-           
+            </p>           
 
           </div>
 
