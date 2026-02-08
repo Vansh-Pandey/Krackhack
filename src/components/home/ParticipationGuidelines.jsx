@@ -6,7 +6,7 @@ const guidelines = [
     icon: Users,
     color: "#EA4335",
     title: "Team Formation",
-    description: "Teams can have 2-4 members. Solo participation is allowed but working in teams is encouraged for better collaboration and learning."
+    description: "Teams can have 2-4 members. Solo participation is strictly not allowed."
   },
   {
     icon: Lightbulb,
@@ -35,8 +35,8 @@ const ParticipationGuidelines = () => {
 
         {/* TITLE */}
         <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 
-            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" 
+          <h2
+            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide"
             style={{ fontFamily: "BlueWinter" }}
           >
             <span className="text-[#EA4335]">P</span>
@@ -89,7 +89,7 @@ const ParticipationGuidelines = () => {
                 }}
               >
                 {/* ICON */}
-                <div 
+                <div
                   className="
                     inline-flex items-center justify-center
                     w-16 h-16
@@ -106,7 +106,7 @@ const ParticipationGuidelines = () => {
                 </div>
 
                 {/* TITLE */}
-                <h3 
+                <h3
                   className="font-bold text-xl sm:text-2xl mb-3 text-black"
                   style={{ fontFamily: "BlueWinter" }}
                 >
@@ -123,7 +123,7 @@ const ParticipationGuidelines = () => {
         </div>
 
         {/* ADDITIONAL INFO BOX */}
-        <div 
+        <div
           className="
             cursor-target
             mt-12
@@ -136,7 +136,7 @@ const ParticipationGuidelines = () => {
             hover:translate-x-1 hover:translate-y-1
           "
         >
-          <p 
+          <p
             className="font-bold text-lg sm:text-xl mb-2 text-black"
             style={{ fontFamily: "BlueWinter" }}
           >
@@ -147,19 +147,20 @@ const ParticipationGuidelines = () => {
               <span className="text-[#EA4335] font-bold mr-2">•</span>
               <span>All participants must register before the deadline</span>
             </li>
-            <li className="flex items-start">
-              <span className="text-[#4285F4] font-bold mr-2">•</span>
-              <span>Bring your laptop, charger, and enthusiasm!</span>
-            </li>
+
+             
+
             <li className="flex items-start">
               <span className="text-[#FBBC05] font-bold mr-2">•</span>
-              <span>Internet and power will be provided throughout the event</span>
+              <span>Internet and power will be provided for on-campus participants</span>
             </li>
+
             <li className="flex items-start">
               <span className="text-[#34A853] font-bold mr-2">•</span>
               <span>Code of conduct must be followed by all participants</span>
-            </li>
+            </li> 
           </ul>
+
         </div>
 
       </div>

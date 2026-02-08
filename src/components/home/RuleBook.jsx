@@ -6,12 +6,28 @@ const rules = [
     category: "Registration & Team",
     color: "#EA4335",
     items: [
-      { type: "do", text: "Register your team before the deadline" },
-      { type: "do", text: "Form teams of 2-4 members (solo is allowed)" },
-      { type: "do", text: "Ensure all team members are registered" },
-      { type: "dont", text: "Change team members after registration closes" },
-      { type: "dont", text: "Register multiple teams with the same members" }
+      {
+        type: "do",
+        text: "Complete solo registration before the deadline (team registration opens only after the hackathon begins)"
+      },
+      {
+        type: "do",
+        text: "Form teams of 2–4 members once team registration is enabled"
+      },
+      {
+        type: "do",
+        text: "Ensure every team member has completed individual registration before joining a team"
+      },
+      {
+        type: "dont",
+        text: "Create or modify teams after the team registration window closes"
+      },
+      {
+        type: "dont",
+        text: "Register multiple teams with the same participants"
+      }
     ]
+
   },
   {
     category: "Development Rules",
@@ -61,8 +77,8 @@ const Rulebook = () => {
 
         {/* TITLE */}
         <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 
-            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" 
+          <h2
+            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide"
             style={{ fontFamily: "BlueWinter" }}
           >
             <span className="text-[#EA4335]">R</span>
@@ -80,7 +96,7 @@ const Rulebook = () => {
         <div className="space-y-6">
           {rules.map((rule, index) => {
             const isExpanded = expandedIndex === index
-            
+
             return (
               <div
                 key={index}
@@ -106,20 +122,20 @@ const Rulebook = () => {
                     transition-all duration-300
                     hover:bg-gray-50
                   "
-                  style={{ 
+                  style={{
                     borderBottom: isExpanded ? '4px solid black' : 'none'
                   }}
                 >
                   <div className="flex items-center gap-4">
                     {/* NUMBER BADGE */}
-                    <div 
+                    <div
                       className="
                         flex items-center justify-center
                         w-12 h-12
                         border-4 border-black
                         font-bold text-white text-xl
                       "
-                      style={{ 
+                      style={{
                         backgroundColor: rule.color,
                         fontFamily: "BlueWinter"
                       }}
@@ -128,7 +144,7 @@ const Rulebook = () => {
                     </div>
 
                     {/* CATEGORY NAME */}
-                    <h3 
+                    <h3
                       className="font-bold text-xl sm:text-2xl text-left"
                       style={{ fontFamily: "BlueWinter" }}
                     >
@@ -137,7 +153,7 @@ const Rulebook = () => {
                   </div>
 
                   {/* CHEVRON */}
-                  <ChevronDown 
+                  <ChevronDown
                     className={`
                       w-6 h-6 
                       transition-transform duration-300
@@ -147,7 +163,7 @@ const Rulebook = () => {
                 </button>
 
                 {/* CONTENT */}
-                <div 
+                <div
                   className={`
                     overflow-hidden
                     transition-all duration-500
@@ -156,7 +172,7 @@ const Rulebook = () => {
                 >
                   <div className="p-6 space-y-3">
                     {rule.items.map((item, itemIndex) => (
-                      <div 
+                      <div
                         key={itemIndex}
                         className="flex items-start gap-3 group"
                         style={{
@@ -164,13 +180,13 @@ const Rulebook = () => {
                         }}
                       >
                         {item.type === "do" ? (
-                          <CheckCircle2 
-                            className="w-6 h-6 shrink-0 mt-0.5 text-[#34A853]" 
+                          <CheckCircle2
+                            className="w-6 h-6 shrink-0 mt-0.5 text-[#34A853]"
                             strokeWidth={2.5}
                           />
                         ) : (
-                          <XCircle 
-                            className="w-6 h-6 shrink-0 mt-0.5 text-[#EA4335]" 
+                          <XCircle
+                            className="w-6 h-6 shrink-0 mt-0.5 text-[#EA4335]"
                             strokeWidth={2.5}
                           />
                         )}
@@ -187,7 +203,7 @@ const Rulebook = () => {
         </div>
 
         {/* FOOTER NOTE */}
-        <div 
+        <div
           className="
             cursor-target
             mt-12
@@ -198,7 +214,7 @@ const Rulebook = () => {
             text-center
           "
         >
-          <p 
+          <p
             className="font-bold text-lg sm:text-xl text-black"
             style={{ fontFamily: "BlueWinter" }}
           >
