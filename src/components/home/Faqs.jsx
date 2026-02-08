@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     question: "What is the team size limit?",
-    answer: "Teams can have 2-4 members. Solo participation is allowed but teams are encouraged.",
+    answer: "Teams can have 2-4 members. Solo participation is strictly not allowed.",
     color: "#34A853"
   },
   {
