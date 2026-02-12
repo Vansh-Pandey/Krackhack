@@ -257,7 +257,7 @@ const Footer = () => {
 
             {/* COPYRIGHT */}
             <p className="text-gray-500 text-sm text-center md:text-left flex items-center gap-2 justify-center md:justify-start">
-              © 202 KrackHack. All rights reserved.
+              © 2026 KrackHack. All rights reserved.
               <img
                 src="/gdg-logo.png"
                 alt="GDG IIT Mandi"
