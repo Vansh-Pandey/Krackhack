@@ -1,46 +1,46 @@
 import React from "react"
-import { Mail, Phone, User } from "lucide-react"
+import { Mail, Phone, User, MessageCircle } from "lucide-react"
 
 const pocs = [
   {
     name: "Akshat",
-    role: "AI/ML", 
+    role: "AI/ML",
     phone: "+91 87662 26219",
     color: "#EA4335"
   },
   {
     name: "Vipresh",
-    role: "Gen AI", 
+    role: "Gen AI",
     phone: "+91 79735 74307",
     color: "#FBBC05"
   },
   {
     name: "Vansh",
-    role: "Web Dev", 
+    role: "Web Dev",
     phone: "+91 78400 52725",
     color: "#34A853"
   },
   {
     name: "Harsh",
-    role: "Cybersecurity", 
+    role: "Cybersecurity",
     phone: "+91 95188 30309",
     color: "#EA4335"
   },
   {
     name: "James",
-    role: "Blockchain", 
+    role: "Blockchain",
     phone: "+91 88495 56496",
     color: "#4285F4"
   },
   {
     name: "Khushbu",
-    role: "Registration", 
+    role: "Registration",
     phone: "+91 95880 72217",
     color: "#FBBC05"
   },
   {
     name: "Ridhhi",
-    role: "Submissions", 
+    role: "Submissions",
     phone: "+91 96509 97560",
     color: "#34A853"
   }
@@ -53,8 +53,8 @@ const POCs = () => {
 
         {/* TITLE */}
         <div className="inline-block bg-white border-4 border-black px-6 py-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-12">
-          <h2 
-            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide" 
+          <h2
+            className="cursor-target font-extrabold text-[clamp(1.8rem,4vw,3rem)] tracking-wide"
             style={{ fontFamily: "BlueWinter" }}
           >
             <span className="text-[#EA4335]">P</span>
@@ -103,7 +103,7 @@ const POCs = () => {
               }}
             >
               {/* AVATAR */}
-              <div 
+              <div
                 className="
                   w-16 h-16
                   flex items-center justify-center
@@ -119,7 +119,7 @@ const POCs = () => {
               </div>
 
               {/* NAME */}
-              <h3 
+              <h3
                 className="font-bold text-xl mb-1"
                 style={{ fontFamily: "BlueWinter", color: poc.color }}
               >
@@ -133,7 +133,7 @@ const POCs = () => {
 
               {/* CONTACT INFO */}
               <div className="space-y-2">
-                
+
 
                 {/* PHONE */}
                 <a
@@ -155,7 +155,7 @@ const POCs = () => {
         </div>
 
         {/* GENERAL CONTACT */}
-        <div 
+        <div
           className="
             cursor-target
             mt-12
@@ -165,7 +165,7 @@ const POCs = () => {
             shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]
           "
         >
-          <h3 
+          <h3
             className="font-bold text-2xl sm:text-3xl mb-4"
             style={{ fontFamily: "BlueWinter" }}
           >
@@ -193,7 +193,7 @@ const POCs = () => {
               style={{ fontFamily: "BlueWinter" }}
             >
               <Mail className="w-5 h-5" strokeWidth={2.5} />
-              gdgiitmandi@gmail.com 
+              gdgiitmandi@gmail.com
             </a>
             <a
               href="tel:+919876543210"
@@ -215,6 +215,29 @@ const POCs = () => {
               <Phone className="w-5 h-5" strokeWidth={2.5} />
               +91 78400 52725
             </a>
+            <a
+              href="https://discord.gg/vjFsTBypdr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                cursor-target
+                flex items-center justify-center gap-2
+                px-6 py-3
+                bg-white
+                border-4 border-[#5865F2]
+                text-[#5865F2]
+                font-bold
+                shadow-[4px_4px_0px_0px_#5865F2]
+                hover:shadow-[2px_2px_0px_0px_#5865F2]
+                hover:translate-x-0.5 hover:translate-y-0.5
+                transition-all duration-200
+              "
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              <MessageCircle className="w-5 h-5" strokeWidth={2.5} />
+              Join Discord
+            </a>
+
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 import React from "react"
-import { Linkedin, Instagram, Globe, Twitter, ExternalLink } from "lucide-react"
+import { Linkedin, Instagram, Globe, Twitter, ExternalLink, MessageCircle } from "lucide-react"
 
 const socialLinks = [
   {
@@ -36,7 +36,14 @@ const socialLinks = [
     icon: ExternalLink,
     color: "#FBBC05",
     handle: "GDG on Campus IIT Mandi"
-  }
+  },
+  {
+    name: "Discord",
+    url: "https://discord.gg/vjFsTBypdr",
+    icon: MessageCircle,
+    color: "#5865F2",
+    handle: "Join our Discord"
+  },
 ]
 
 const Footer = () => {
@@ -185,7 +192,7 @@ const Footer = () => {
             Connect With Us
           </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
             {socialLinks.map((social, index) => {
               const Icon = social.icon
               return (
@@ -250,13 +257,13 @@ const Footer = () => {
 
             {/* COPYRIGHT */}
             <p className="text-gray-500 text-sm text-center md:text-left flex items-center gap-2 justify-center md:justify-start">
-              © 202 KrackHack. All rights reserved. 
+              © 202 KrackHack. All rights reserved.
               <img
                 src="/gdg-logo.png"
                 alt="GDG IIT Mandi"
                 className="h-5 inline-block ml-1"
               />
-            </p>           
+            </p>
 
           </div>
 
