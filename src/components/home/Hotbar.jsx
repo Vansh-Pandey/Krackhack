@@ -9,6 +9,7 @@ import {
   Image,
   Book,
   Scale,
+  Send,  // ADD THIS IMPORT
 } from "lucide-react"
 
 const Hotbar = () => {
@@ -20,6 +21,7 @@ const Hotbar = () => {
     { id: "about", label: "ABOUT", icon: User, color: "#EA4335" },
     { id: "domains", label: "DOMAINS", icon: Folder, color: "#4285F4" },
     { id: "timeline", label: "TIMELINE", icon: Clock, color: "#FBBC05" },
+    { id: "submissions", label: "SUBMIT", icon: Send, color: "#EA4335" },  // ADD THIS LINE
     { id: "guidelines", label: "RULES", icon: Book, color: "#34A853" },
     { id: "judging", label: "JUDGING", icon: Scale, color: "#EA4335" },
     { id: "gallery", label: "GALLERY", icon: Image, color: "#4285F4" },
@@ -74,7 +76,7 @@ const Hotbar = () => {
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] flex justify-center pb-4 sm:pb-6 px-2 sm:px-4 pointer-events-none">
+    <div className="fixed bottom-0 left-0 right-0 z-100 flex justify-center pb-4 sm:pb-6 px-2 sm:px-4 pointer-events-none">
       {/* ===== MAIN HOTBAR ===== */}
       <div
         className="
@@ -186,3 +188,4 @@ const Hotbar = () => {
 }
 
 export default Hotbar
+ 

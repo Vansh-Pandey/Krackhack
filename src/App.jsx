@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import LoadingOverlay from "./components/loading/LoadingOverlay.jsx";
 import TargetCursor from "./components/ui/TargetCursor.jsx";
 import Home from "./pages/Home.jsx";
+import MidSubmission from "./pages/MidSubmission.jsx";
+import EndSubmission from "./pages/EndSubmission.jsx";
+import Admin from "./pages/Admin.jsx";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -29,7 +32,11 @@ export default function App() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/mid-submission" element={<MidSubmission />} />
+        <Route path="/final-submission" element={<EndSubmission />} />
+        <Route path="/krackhack-admin" element={<Admin />} />
       </Routes>
     </>
   );
 }
+ 

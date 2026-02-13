@@ -11,7 +11,7 @@ import FAQs from "../components/home/Faqs.jsx"
 import POCs from "../components/home/POCs.jsx"
 import Footer from "../components/home/Footer.jsx"
 import Hotbar from "../components/home/Hotbar.jsx"
-
+import Submissions from "../components/home/Submissions.jsx"
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
@@ -113,6 +113,9 @@ const Home = () => {
       
       <div id="timeline">
         <Timeline />
+      </div>
+      <div id="submissions">
+        <Submissions />
       </div>
 
       <div id="guidelines">
