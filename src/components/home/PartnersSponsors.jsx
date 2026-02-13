@@ -26,6 +26,9 @@ const sponsors = {
   platform: [
     { name: "DoraHacks", logo: "/sponsors/dorahacks.png", url: "#", tier: "Platform" }
   ],
+  partner: [
+    { name: "Requestly", logo: "/sponsors/requestly.png", url: "#", tier: "Partner" }
+  ],
   community: [
     { name: "GDG VU", logo: "/sponsors/gdg_vu.jpeg", url: "#", tier: "Community Partner" },
 
@@ -238,6 +241,29 @@ const PartnersSponsors = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sponsors.platform.map((sponsor, index) => (
+              <div
+                key={index}
+                style={{
+                  animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
+                }}
+              >
+                <SponsorCard sponsor={sponsor} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Zap className="w-8 h-8 text-[#4285F4]" strokeWidth={2.5} />
+            <h3
+              className="font-bold text-2xl sm:text-3xl"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              Partner Sponsor
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sponsors.partner.map((sponsor, index) => (
               <div
                 key={index}
                 style={{
