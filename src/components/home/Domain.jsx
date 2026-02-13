@@ -1,40 +1,128 @@
-import React from "react"
-import { Globe, Smartphone, Link2, Sparkles, Brain, Shield, Calendar, AlertCircle } from "lucide-react"
+import React, { useState } from "react"
+import { Globe, Smartphone, Link2, Sparkles, Brain, Shield, Calendar, AlertCircle, ChevronDown, ExternalLink, FileText } from "lucide-react"
 
 const domains = [
   { 
     name: "Web Development", 
     icon: Globe, 
     color: "#EA4335",
-    description: "Build responsive web applications and platforms"
-  } ,
+    description: "Build responsive web applications and platforms",
+    psLink: "#web-dev-ps",
+    guidelines: {
+      compulsory: [
+        "GitHub repo link",
+        "Youtube video link",
+        "Live Link - optional"
+      ],
+      specific: [
+        "Technical Presentation"
+      ]
+    }
+  },
   { 
     name: "Blockchain", 
     icon: Link2, 
     color: "#FBBC05",
-    description: "Develop decentralized applications and smart contracts"
+    description: "Develop decentralized applications and smart contracts",
+    psLink: "#blockchain-ps",
+    guidelines: {
+      compulsory: [
+        "GitHub repo link",
+        "Youtube video link",
+        "Live Link - optional"
+      ],
+      specific: [
+        "Public GitHub repo (or GitLab) with:",
+        "README.md with one-paragraph project summary and quick start",
+        "Contract code + tests",
+        "Frontend code (link to live demo)",
+        "Deployment addresses (testnet/mainnet) and 3 example tx hashes (post, like, tip)",
+        "Short demo video posted on any social (max 5 minutes) showing flow",
+        "Live demo URL (hosted on Netlify / Vercel / or direct IPFS gateway)"
+      ]
+    }
   },
   { 
     name: "Generative AI", 
     icon: Sparkles, 
     color: "#34A853",
-    description: "Build AI models that generate content and solutions"
+    description: "Build AI models that generate content and solutions",
+    psLink: "#genai-ps",
+    guidelines: {
+      compulsory: [
+        "GitHub repo link",
+        "Youtube video link",
+        "Live Link - optional"
+      ],
+      specific: [
+        "Build: Create a working prototype powered by a Smolify model",
+        "Social Proof: Post a screenshot/video of your project using Smolify on Twitter (X) AND LinkedIn",
+        "Twitter: Tag @smolifyai",
+        "LinkedIn: Tag Smolify",
+        "Caption must include: 'Built with Smolify.AI'",
+        "Documentation: A brief write-up (Readme or Devpost) explaining:",
+        "The problem you solved",
+        "Why a specialized model was better than a general LLM for this task",
+        "Link to your Smolify Model (the HuggingFace repo if you uploaded it)"
+      ]
+    }
   },
   { 
     name: "AI / Machine Learning", 
     icon: Brain, 
     color: "#EA4335",
-    description: "Develop intelligent systems and predictive models"
+    description: "Develop intelligent systems and predictive models",
+    psLink: "#ai-ml-ps",
+    guidelines: {
+      compulsory: [
+        "GitHub repo link",
+        "Youtube video link",
+        "Live Link - optional"
+      ],
+      specific: [
+        "A single, Final Packaged Folder that includes all necessary files:",
+        "Model training and inference scripts (train.py, test.py)",
+        "Configuration files",
+        "Any additional assets or scripts required to test your model",
+        "A well-structured Hackathon Report (PDF or DOCX) that covers:",
+        "Methodology: Your training approach and setup",
+        "Challenges & Solutions: Issues faced and how you overcame them",
+        "Optimizations: Techniques used to improve model performance",
+        "Performance Evaluation: IoU score and Failure case analysis",
+        "A README.md or README.txt that provides:",
+        "Step-by-step instructions to run and test your model",
+        "How to reproduce your final results",
+        "Environment or dependency requirements",
+        "Notes on expected outputs and how to interpret them"
+      ]
+    }
   },
   { 
     name: "Cybersecurity", 
     icon: Shield, 
     color: "#4285F4",
-    description: "Create security solutions and vulnerability tools"
+    description: "Create security solutions and vulnerability tools",
+    psLink: "#cybersec-ps",
+    guidelines: {
+      compulsory: [
+        "GitHub repo link",
+        "Youtube video link",
+        "Live Link - optional"
+      ],
+      specific: [
+        "Deploy website comp"
+      ]
+    }
   }
 ]
 
 const Domains = () => {
+  const [expandedDomain, setExpandedDomain] = useState(null)
+
+  const toggleDomain = (index) => {
+    setExpandedDomain(expandedDomain === index ? null : index)
+  }
+
   return (
     <section className="relative w-full bg-white py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6">
@@ -84,57 +172,238 @@ const Domains = () => {
         </div>
 
         {/* DOMAIN CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 gap-6 mb-16">
           {domains.map((domain, index) => {
             const Icon = domain.icon
+            const isExpanded = expandedDomain === index
+            
             return (
               <div
                 key={index}
                 className="
                   cursor-target
-                  group
                   bg-white
                   border-4 border-black
-                  p-6
                   shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]
-                  transition-all duration-300
-                  hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]
-                  hover:translate-x-0.75 hover:translate-y-0.75
                 "
                 style={{
                   animation: `slideUp 0.6s ease-out ${index * 0.1}s both`
                 }}
               >
-                {/* ICON */}
-                <div 
-                  className="
-                    inline-flex items-center justify-center
-                    w-16 h-16
-                    border-4 border-black
-                    bg-white
-                    shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
-                    mb-4
-                    transition-transform duration-300
-                    group-hover:scale-110
-                    group-hover:rotate-6
-                  "
-                  style={{ backgroundColor: domain.color }}
-                >
-                  <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
+                {/* CARD HEADER */}
+                <div className="p-6 flex items-start gap-6">
+                  {/* ICON */}
+                  <div 
+                    className="
+                      shrink-0
+                      inline-flex items-center justify-center
+                      w-16 h-16
+                      border-4 border-black
+                      bg-white
+                      shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                    "
+                    style={{ backgroundColor: domain.color }}
+                  >
+                    <Icon className="w-8 h-8 text-white" strokeWidth={2.5} />
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="flex-1">
+                    <h3 
+                      className="font-bold text-xl sm:text-2xl mb-2"
+                      style={{ fontFamily: "BlueWinter", color: domain.color }}
+                    >
+                      {domain.name}
+                    </h3>
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-4">
+                      {domain.description}
+                    </p>
+
+                    {/* BUTTONS */}
+                    <div className="flex flex-wrap gap-3">
+                      {/* VISIT PS BUTTON */}
+                      <a
+                        href={domain.psLink}
+                        className="
+                          inline-flex items-center gap-2
+                          bg-white
+                          border-4 border-black
+                          px-4 py-2
+                          font-bold
+                          shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                          transition-all duration-200
+                          hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                          hover:translate-x-0.5 hover:translate-y-0.5
+                        "
+                        style={{ 
+                          fontFamily: "BlueWinter",
+                          color: domain.color 
+                        }}
+                      >
+                        <ExternalLink className="w-4 h-4" strokeWidth={2.5} />
+                        Visit PS
+                      </a>
+
+                      {/* VIEW GUIDELINES BUTTON */}
+                      <button
+                        onClick={() => toggleDomain(index)}
+                        className="
+                          inline-flex items-center gap-2
+                          bg-white
+                          border-4 border-black
+                          px-4 py-2
+                          font-bold
+                          shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                          transition-all duration-200
+                          hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                          hover:translate-x-0.5 hover:translate-y-0.5
+                        "
+                        style={{ 
+                          fontFamily: "BlueWinter",
+                          backgroundColor: domain.color,
+                          color: "white"
+                        }}
+                      >
+                        <FileText className="w-4 h-4" strokeWidth={2.5} />
+                        {isExpanded ? "Hide" : "View"} Guidelines
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                          strokeWidth={2.5}
+                        />
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
-                {/* TITLE */}
-                <h3 
-                  className="font-bold text-xl sm:text-2xl mb-2"
-                  style={{ fontFamily: "BlueWinter", color: domain.color }}
-                >
-                  {domain.name}
-                </h3>
+                {/* EXPANDABLE GUIDELINES */}
+                {isExpanded && (
+                  <div 
+                    className="border-t-4 border-black bg-gray-50 p-6"
+                    style={{ animation: 'slideDown 0.3s ease-out' }}
+                  >
+                    {/* COMPULSORY SUBMISSIONS */}
+                    <div className="mb-6">
+                      <div 
+                        className="
+                          inline-block
+                          bg-black
+                          text-white
+                          px-4 py-2
+                          border-4 border-black
+                          font-bold
+                          mb-4
+                        "
+                        style={{ fontFamily: "BlueWinter" }}
+                      >
+                        Compulsory Submission
+                      </div>
+                      <ul className="space-y-2">
+                        {domain.guidelines.compulsory.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <div 
+                              className="
+                                shrink-0
+                                w-6 h-6
+                                flex items-center justify-center
+                                border-2 border-black
+                                font-bold text-xs
+                                mt-0.5
+                              "
+                              style={{ 
+                                backgroundColor: domain.color,
+                                color: "white"
+                              }}
+                            >
+                              ✓
+                            </div>
+                            <span className="text-gray-800 text-sm sm:text-base leading-relaxed">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                {/* DESCRIPTION */}
-                <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
-                  {domain.description}
-                </p>
+                    {/* DOMAIN-SPECIFIC SUBMISSIONS */}
+                    <div>
+                      <div 
+                        className="
+                          inline-block
+                          px-4 py-2
+                          border-4 border-black
+                          font-bold
+                          mb-4
+                        "
+                        style={{ 
+                          fontFamily: "BlueWinter",
+                          backgroundColor: domain.color,
+                          color: "white"
+                        }}
+                      >
+                        {domain.name} Specific Requirements
+                      </div>
+                      <ul className="space-y-2">
+                        {domain.guidelines.specific.map((item, i) => {
+                          // Determine if this is a parent item (ends with ":")
+                          const isParentItem = item.endsWith(':')
+                          
+                          // Determine if this is a nested/sub item
+                          // Logic: Look backwards to find the most recent parent item (ends with ":")
+                          // If we find one and current item doesn't end with ":", we're nested
+                          let isNested = false
+                          if (!isParentItem) {
+                            for (let j = i - 1; j >= 0; j--) {
+                              if (domain.guidelines.specific[j].endsWith(':')) {
+                                isNested = true
+                                break
+                              }
+                            }
+                          }
+                          
+                          return (
+                            <li key={i} className={`flex items-start gap-3 ${isNested ? 'ml-6' : ''}`}>
+                              {isNested ? (
+                                // Sub-item bullet - smaller filled circle
+                                <div 
+                                  className="
+                                    shrink-0
+                                    w-1.5 h-1.5
+                                    rounded-full
+                                    mt-2
+                                  "
+                                  style={{ 
+                                    backgroundColor: domain.color
+                                  }}
+                                />
+                              ) : (
+                                // Main item bullet - square with border
+                                <div 
+                                  className="
+                                    shrink-0
+                                    w-2 h-2
+                                    border-2 border-black
+                                    mt-2
+                                  "
+                                  style={{ 
+                                    backgroundColor: domain.color
+                                  }}
+                                />
+                              )}
+                              <span 
+                                className="text-gray-800 text-sm sm:text-base leading-relaxed"
+                                style={{ 
+                                  fontWeight: isParentItem ? '600' : 'normal'
+                                }}
+                              >
+                                {item}
+                              </span>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                )}
               </div>
             )
           })}
@@ -299,6 +568,17 @@ const Domains = () => {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            max-height: 0;
+          }
+          to {
+            opacity: 1;
+            max-height: 1000px;
           }
         }
 
