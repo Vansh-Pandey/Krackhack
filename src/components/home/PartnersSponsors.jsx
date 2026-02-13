@@ -3,6 +3,9 @@ import { Award, Zap, Heart } from "lucide-react"
 
 // Sample sponsor data - replace with actual logos and URLs
 const sponsors = {
+  gold: [
+    { name: "Duality", logo: "/sponsors/duality.png", url: "#", tier: "Gold" }
+  ],
   silver: [
     { name: "Insights", logo: "/sponsors/insights.jpeg", url: "#", tier: "Silver" }
   ],
@@ -129,6 +132,29 @@ const PartnersSponsors = () => {
         </div>
 
         {/* SILVER SPONSOR */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <Award className="w-8 h-8 text-[#EA4335]" strokeWidth={2.5} />
+            <h3
+              className="font-bold text-2xl sm:text-3xl"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              Gold Sponsor
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {sponsors.gold.map((sponsor, index) => (
+              <div
+                key={index}
+                style={{
+                  animation: `fadeInScale 0.6s ease-out ${index * 0.1}s both`
+                }}
+              >
+                <SponsorCard sponsor={sponsor} size="large" />
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <Award className="w-8 h-8 text-[#EA4335]" strokeWidth={2.5} />

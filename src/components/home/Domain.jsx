@@ -7,7 +7,7 @@ const domains = [
     icon: Globe, 
     color: "#EA4335",
     description: "Build responsive web applications and platforms",
-    psLink: "#web-dev-ps",
+    psLink: "PS_Krackhack_2026.pdf",
     guidelines: {
       compulsory: [
         "GitHub repo link",
@@ -24,7 +24,7 @@ const domains = [
     icon: Link2, 
     color: "#FBBC05",
     description: "Develop decentralized applications and smart contracts",
-    psLink: "#blockchain-ps",
+    psLink: "PS_Krackhack_2026.pdf",
     guidelines: {
       compulsory: [
         "GitHub repo link",
@@ -47,7 +47,7 @@ const domains = [
     icon: Sparkles, 
     color: "#34A853",
     description: "Build AI models that generate content and solutions",
-    psLink: "#genai-ps",
+    psLink: "PS_Krackhack_2026.pdf",
     guidelines: {
       compulsory: [
         "GitHub repo link",
@@ -72,7 +72,7 @@ const domains = [
     icon: Brain, 
     color: "#EA4335",
     description: "Develop intelligent systems and predictive models",
-    psLink: "#ai-ml-ps",
+    psLink: "PS_Krackhack_2026.pdf",
     guidelines: {
       compulsory: [
         "GitHub repo link",
@@ -102,7 +102,7 @@ const domains = [
     icon: Shield, 
     color: "#4285F4",
     description: "Create security solutions and vulnerability tools",
-    psLink: "#cybersec-ps",
+    psLink: "PS_Krackhack_2026.pdf",
     guidelines: {
       compulsory: [
         "GitHub repo link",
@@ -224,6 +224,8 @@ const Domains = () => {
                       {/* VISIT PS BUTTON */}
                       <a
                         href={domain.psLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="
                           inline-flex items-center gap-2
                           bg-white
