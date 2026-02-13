@@ -12,6 +12,7 @@ import POCs from "../components/home/POCs.jsx"
 import Footer from "../components/home/Footer.jsx"
 import Hotbar from "../components/home/Hotbar.jsx"
 import Submissions from "../components/home/Submissions.jsx"
+import PrizePool from "../components/home/PrizePool.jsx"
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
@@ -94,6 +95,9 @@ const Home = () => {
 
       <div id="domains">
         <Domains />
+      </div>
+      <div id="prizepool">
+        <PrizePool />
       </div>
       
       <BorderStrip>
