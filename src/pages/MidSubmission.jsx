@@ -27,8 +27,8 @@ const MidSubmission = () => {
     thoreLinkedin: "",
     thoreTwitter: "",
     members: [
-      { name: "", mobile: "", telegram: "", isLeader: true },
-      { name: "", mobile: "", telegram: "", isLeader: false }
+      { name: "", mobile: "", email: "", isLeader: true },
+      { name: "", mobile: "", email: "", isLeader: false }
     ]
   })
 
@@ -81,11 +81,9 @@ const MidSubmission = () => {
       }
     }
     
-    // Check THORE links for Blockchain domain
-    if (formData.domain === "Blockchain") {
-      if (!formData.thoreLinkedin.trim() || !formData.thoreTwitter.trim()) {
-        return "THORE social media posts are required for Blockchain domain"
-      }
+    // Check THORE links for ALL domains
+    if (!formData.thoreLinkedin.trim() || !formData.thoreTwitter.trim()) {
+      return "THORE social media posts are required for all teams"
     }
 
     // Validate members
@@ -94,7 +92,7 @@ const MidSubmission = () => {
     
     for (let member of filledMembers) {
       if (!member.mobile.trim()) return `Mobile number required for ${member.name}`
-      if (!member.telegram.trim()) return `Telegram ID required for ${member.name}`
+      if (!member.email.trim()) return `Email ID required for ${member.name}`
     }
 
     const hasLeader = formData.members.some(m => m.isLeader && m.name.trim())
@@ -134,8 +132,9 @@ const MidSubmission = () => {
         members: validMembers,
         pizzaGiven: "No"
       }
- 
-      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxYVWMs_CbfrD-BGDq28uDNKS1Mno3vNwfa_R84rvQM0IcBhsVxnCWZrQiaKVN-VVBW/exec"
+
+      // Replace with your Google Apps Script Web App URL
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMMkAjqkfkHg6rdt-WEqUZFJlWSV5wrevTkcIxBDUYdPmqLO6xAQ0hr9acrQCsEW_H/exec"
       
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
@@ -147,7 +146,8 @@ const MidSubmission = () => {
       })
 
       setSubmitSuccess(true)
-       
+      
+      // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
           teamName: "",
@@ -160,8 +160,8 @@ const MidSubmission = () => {
           thoreLinkedin: "",
           thoreTwitter: "",
           members: [
-            { name: "", mobile: "", telegram: "", isLeader: true },
-            { name: "", mobile: "", telegram: "", isLeader: false }
+            { name: "", mobile: "", email: "", isLeader: true },
+            { name: "", mobile: "", email: "", isLeader: false }
           ]
         })
         setSubmitSuccess(false)
@@ -362,52 +362,50 @@ const MidSubmission = () => {
             </div>
           )}
 
-          {/* SOCIAL MEDIA POSTS - BLOCKCHAIN */}
-          {formData.domain === "Blockchain" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              <h2 
-                className="font-bold text-2xl mb-6 text-[#FBBC05]"
-                style={{ fontFamily: "BlueWinter" }}
-              >
-                THORE Social Posts (Required for Blockchain)
-              </h2>
-              
-              <div className="bg-[#FBBC05] bg-opacity-10 border-2 border-[#FBBC05] p-4 mb-4">
-                <p className="text-sm font-bold">
-                  Caption must include: "Built with THORE"<br />
-                  Twitter: Tag @THORE | LinkedIn: Tag THORE
-                </p>
+          {/* SOCIAL MEDIA POSTS - THORE (ALL TRACKS) */}
+          <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <h2 
+              className="font-bold text-2xl mb-6 text-[#FBBC05]"
+              style={{ fontFamily: "BlueWinter" }}
+            >
+              THORE Social Posts (Required for All Tracks)
+            </h2>
+            
+            <div className="bg-[#FBBC05] bg-opacity-10 border-2 border-[#FBBC05] p-4 mb-4">
+              <p className="text-sm font-bold">
+                Caption must include: "Built with THORE"<br />
+                Twitter: Tag @THORE | LinkedIn: Tag THORE
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block font-bold mb-2">LinkedIn Post Link *</label>
+                <input
+                  type="url"
+                  name="thoreLinkedin"
+                  value={formData.thoreLinkedin}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#FBBC05]"
+                  placeholder="https://linkedin.com/posts/... (Tag THORE, Caption: 'Built with THORE')"
+                  required
+                />
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <label className="block font-bold mb-2">LinkedIn Post Link *</label>
-                  <input
-                    type="url"
-                    name="thoreLinkedin"
-                    value={formData.thoreLinkedin}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#FBBC05]"
-                    placeholder="https://linkedin.com/posts/... (Tag THORE, Caption: 'Built with THORE')"
-                    required={formData.domain === "Blockchain"}
-                  />
-                </div>
-
-                <div>
-                  <label className="block font-bold mb-2">Twitter Post Link *</label>
-                  <input
-                    type="url"
-                    name="thoreTwitter"
-                    value={formData.thoreTwitter}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#FBBC05]"
-                    placeholder="https://twitter.com/... (Tag @THORE, Caption: 'Built with THORE')"
-                    required={formData.domain === "Blockchain"}
-                  />
-                </div>
+              <div>
+                <label className="block font-bold mb-2">Twitter Post Link *</label>
+                <input
+                  type="url"
+                  name="thoreTwitter"
+                  value={formData.thoreTwitter}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#FBBC05]"
+                  placeholder="https://twitter.com/... (Tag @THORE, Caption: 'Built with THORE')"
+                  required
+                />
               </div>
             </div>
-          )}
+          </div>
 
           {/* TEAM MEMBERS */}
           <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
@@ -478,13 +476,13 @@ const MidSubmission = () => {
                     </div>
 
                     <div>
-                      <label className="block font-bold mb-2 text-sm">Telegram ID *</label>
+                      <label className="block font-bold mb-2 text-sm">Email ID *</label>
                       <input
-                        type="text"
-                        value={member.telegram}
-                        onChange={(e) => handleMemberChange(index, "telegram", e.target.value)}
+                        type="email"
+                        value={member.email}
+                        onChange={(e) => handleMemberChange(index, "email", e.target.value)}
                         className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:ring-2 focus:ring-[#4285F4]"
-                        placeholder="@username"
+                        placeholder="email@example.com"
                         required={index < 2}
                       />
                     </div>

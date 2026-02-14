@@ -15,7 +15,7 @@ const Admin = () => {
 
   // Replace with your actual password
   const CORRECT_PASSWORD = "jokhayeburger"
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxYVWMs_CbfrD-BGDq28uDNKS1Mno3vNwfa_R84rvQM0IcBhsVxnCWZrQiaKVN-VVBW/exec"
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMMkAjqkfkHg6rdt-WEqUZFJlWSV5wrevTkcIxBDUYdPmqLO6xAQ0hr9acrQCsEW_H/exec"
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -100,7 +100,7 @@ const Admin = () => {
     if (activeTab === "mid") {
       csv = "Team Name,Domain,PDF Link,LinkedIn,Twitter,Smolify LinkedIn,Smolify Twitter,THORE LinkedIn,THORE Twitter,Members,Pizza Given,Timestamp\n"
       submissions.forEach(sub => {
-        const members = sub.members?.map(m => `${m.name} (${m.mobile}, ${m.telegram})`).join("; ") || ""
+        const members = sub.members?.map(m => `${m.name} (${m.mobile}, ${m.email})`).join("; ") || ""
         csv += `"${sub.teamName}","${sub.domain}","${sub.pdfLink}","${sub.linkedinPost}","${sub.twitterPost}","${sub.smolifyLinkedin}","${sub.smolifyTwitter}","${sub.thoreLinkedin}","${sub.thoreTwitter}","${members}","${sub.pizzaGiven}","${sub.timestamp}"\n`
       })
     } else {
@@ -403,7 +403,7 @@ const Admin = () => {
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
                   <div className="flex-1">
                     <h3 
-                      className="text-xl sm:text-2xl font-bold mb-2 break-words"
+                      className="text-xl sm:text-2xl font-bold mb-2 wrap-break-word"
                       style={{ fontFamily: "BlueWinter" }}
                     >
                       {submission.teamName}
@@ -522,11 +522,11 @@ const Admin = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                         {submission.members?.map((member, idx) => (
                           <div key={idx} className="border-2 border-black p-2 sm:p-3 text-xs sm:text-sm">
-                            <p className="font-bold break-words">
+                            <p className="font-bold wrap-break-word">
                               {member.name} {member.isLeader && "(Leader)"}
                             </p>
                             <p className="break-all">📱 {member.mobile}</p>
-                            <p className="break-all">✈️ {member.telegram}</p>
+                            <p className="break-all">✉️ {member.email}</p>
                           </div>
                         ))}
                       </div>
@@ -628,7 +628,7 @@ const Admin = () => {
                       <div className="lg:col-span-2">
                         <p className="font-bold text-xs sm:text-sm mb-2">Domain-Specific Submissions:</p>
                         <div className="border-2 border-black p-2 sm:p-3 bg-gray-50">
-                          <pre className="text-xs overflow-auto whitespace-pre-wrap break-words">
+                          <pre className="text-xs overflow-auto whitespace-pre-wrap wrap-break-word">
                             {JSON.stringify(submission.specificLinks, null, 2)}
                           </pre>
                         </div>

@@ -211,7 +211,7 @@ const EndSubmission = () => {
       }
 
       // Replace with your Google Apps Script Web App URL
-      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxYVWMs_CbfrD-BGDq28uDNKS1Mno3vNwfa_R84rvQM0IcBhsVxnCWZrQiaKVN-VVBW/exec"
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMMkAjqkfkHg6rdt-WEqUZFJlWSV5wrevTkcIxBDUYdPmqLO6xAQ0hr9acrQCsEW_H/exec"
       
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
