@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Upload, Users, Send, CheckCircle2, AlertCircle, ArrowLeft } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
@@ -15,6 +15,32 @@ const MidSubmission = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
+  const [hasSubmitted, setHasSubmitted] = useState(false)
+  const [submissionDetails, setSubmissionDetails] = useState(null)
+
+  // Check if already submitted on component mount
+  useEffect(() => {
+    const submitted = localStorage.getItem("midSubmissionCompleted")
+    const details = localStorage.getItem("midSubmissionDetails")
+    
+    if (submitted === "true") {
+      setHasSubmitted(true)
+      if (details) {
+        try {
+          setSubmissionDetails(JSON.parse(details))
+        } catch (e) {
+          console.error("Error parsing submission details:", e)
+        }
+      }
+    }
+  }, [])
+
+  // Scroll to top when submission is successful
+  useEffect(() => {
+    if (submitSuccess) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [submitSuccess])
 
   const [formData, setFormData] = useState({
     teamName: "",
@@ -47,7 +73,7 @@ const MidSubmission = () => {
     if (formData.members.length < 4) {
       setFormData(prev => ({
         ...prev,
-        members: [...prev.members, { name: "", mobile: "", telegram: "", isLeader: false }]
+        members: [...prev.members, { name: "", mobile: "", email: "", isLeader: false }]
       }))
     }
   }
@@ -107,6 +133,7 @@ const MidSubmission = () => {
     const error = validateForm()
     if (error) {
       setSubmitError(error)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
 
@@ -147,6 +174,22 @@ const MidSubmission = () => {
 
       setSubmitSuccess(true)
       
+      // Save submission status to localStorage
+      const submissionInfo = {
+        teamName: formData.teamName,
+        domain: formData.domain,
+        timestamp: new Date().toISOString(),
+        memberCount: validMembers.length
+      }
+      localStorage.setItem("midSubmissionCompleted", "true")
+      localStorage.setItem("midSubmissionDetails", JSON.stringify(submissionInfo))
+      setSubmissionDetails(submissionInfo)
+      
+      // Set hasSubmitted after a brief delay to show success message first
+      setTimeout(() => {
+        setHasSubmitted(true)
+      }, 2000)
+      
       // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
@@ -170,6 +213,7 @@ const MidSubmission = () => {
     } catch (error) {
       console.error("Submission error:", error)
       setSubmitError("Submission failed. Please try again.")
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setIsSubmitting(false)
     }
@@ -232,8 +276,57 @@ const MidSubmission = () => {
           </p>
         </div>
 
+        {/* ALREADY SUBMITTED BANNER */}
+        {hasSubmitted && submissionDetails && (
+          <div className="bg-[#34A853] border-4 border-black p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-white text-xl sm:text-2xl font-bold flex items-center gap-3 mb-3">
+                  <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={2.5} />
+                  Submission Completed! 🎉
+                </p>
+                <div className="text-white space-y-1 ml-10 sm:ml-11">
+                  <p className="font-bold">Team: {submissionDetails.teamName}</p>
+                  <p className="font-bold">Domain: {submissionDetails.domain}</p>
+                  <p className="text-sm opacity-90">
+                    Submitted on: {new Date(submissionDetails.timestamp).toLocaleString()}
+                  </p>
+                  <p className="text-sm opacity-90">
+                    Team Members: {submissionDetails.memberCount}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  if (window.confirm("Are you sure you want to submit again? This will allow you to resubmit your mid-progress.")) {
+                    localStorage.removeItem("midSubmissionCompleted")
+                    localStorage.removeItem("midSubmissionDetails")
+                    setHasSubmitted(false)
+                    setSubmissionDetails(null)
+                  }
+                }}
+                className="
+                  px-4 sm:px-6 py-2.5 sm:py-3
+                  bg-white
+                  text-[#34A853]
+                  border-4 border-black
+                  font-bold text-sm sm:text-base
+                  shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+                  hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+                  hover:translate-x-0.5 hover:translate-y-0.5
+                  transition-all duration-200
+                  whitespace-nowrap
+                "
+                style={{ fontFamily: "BlueWinter" }}
+              >
+                Submit Again
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* SUCCESS MESSAGE */}
-        {submitSuccess && (
+        {submitSuccess && !hasSubmitted && (
           <div className="bg-[#34A853] border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-8">
             <p className="text-white text-lg font-bold flex items-center gap-2">
               <CheckCircle2 className="w-6 h-6" strokeWidth={2.5} />

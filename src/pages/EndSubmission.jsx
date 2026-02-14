@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Send, CheckCircle2, AlertCircle, ArrowLeft, ExternalLink } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
@@ -96,6 +96,13 @@ const EndSubmission = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
 
+  // Scroll to top when submission is successful
+  useEffect(() => {
+    if (submitSuccess) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [submitSuccess])
+
   const [formData, setFormData] = useState({
     teamName: "",
     domain: "",
@@ -192,6 +199,7 @@ const EndSubmission = () => {
     const error = validateForm()
     if (error) {
       setSubmitError(error)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
 
@@ -239,6 +247,7 @@ const EndSubmission = () => {
     } catch (error) {
       console.error("Submission error:", error)
       setSubmitError("Submission failed. Please try again.")
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setIsSubmitting(false)
     }
