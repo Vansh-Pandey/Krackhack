@@ -96,7 +96,7 @@ const Submissions = () => {
             {/* DEADLINE */}
             <div className="flex items-center gap-2 mb-6 text-gray-600">
               <Clock className="w-5 h-5" strokeWidth={2.5} />
-              <span className="font-bold">Deadline: 14 Feb, 2:00 PM IST</span>
+              <span className="font-bold">Deadline: 14 Feb, 4:00 PM IST</span>
             </div>
 
             {/* WHAT TO SUBMIT */}
