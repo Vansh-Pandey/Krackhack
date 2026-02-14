@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Pizza, CheckCircle2, XCircle, RefreshCw, Search, Filter, Download, Lock } from "lucide-react"
+import { Pizza, CheckCircle2, XCircle, RefreshCw, Search, Filter, Download, Lock, AlertTriangle } from "lucide-react"
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -12,10 +12,71 @@ const Admin = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterDomain, setFilterDomain] = useState("")
   const [filterPizza, setFilterPizza] = useState("")
+  const [duplicatesCount, setDuplicatesCount] = useState(0)
 
   // Replace with your actual password
   const CORRECT_PASSWORD = "jokhayeburger"
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMMkAjqkfkHg6rdt-WEqUZFJlWSV5wrevTkcIxBDUYdPmqLO6xAQ0hr9acrQCsEW_H/exec"
+
+  // Normalize string for comparison (lowercase, remove spaces)
+  const normalize = (str) => {
+    if (!str) return ""
+    return str.toString().toLowerCase().replace(/\s+/g, "")
+  }
+
+  // Extract phone numbers from members array
+  const getPhoneNumbers = (members) => {
+    if (!members || !Array.isArray(members)) return []
+    return members.map(m => normalize(m.mobile)).filter(Boolean)
+  }
+
+  // Check if two submissions are duplicates
+  const isDuplicate = (sub1, sub2) => {
+    // Normalize team names
+    const teamName1 = normalize(sub1.teamName)
+    const teamName2 = normalize(sub2.teamName)
+    
+    // Check team name similarity (exact match after normalization)
+    const sameTeamName = teamName1 === teamName2 && teamName1 !== ""
+    
+    // Check domain match
+    const sameDomain = sub1.domain === sub2.domain && sub1.domain !== ""
+    
+    // Check if any phone numbers match
+    const phones1 = getPhoneNumbers(sub1.members)
+    const phones2 = getPhoneNumbers(sub2.members)
+    const hasMatchingPhone = phones1.some(p1 => phones2.includes(p1)) && phones1.length > 0
+    
+    // Consider it a duplicate if:
+    // (Same team name AND same domain) OR (Same domain AND matching phone number)
+    return (sameTeamName && sameDomain) || (sameDomain && hasMatchingPhone)
+  }
+
+  // Remove duplicates, keeping the most recent submission
+  const removeDuplicates = (submissions) => {
+    if (!submissions || submissions.length === 0) return []
+    
+    // Sort by timestamp descending (most recent first)
+    const sorted = [...submissions].sort((a, b) => 
+      new Date(b.timestamp) - new Date(a.timestamp)
+    )
+    
+    const unique = []
+    const duplicates = []
+    
+    for (const submission of sorted) {
+      const isDupe = unique.some(existing => isDuplicate(submission, existing))
+      
+      if (!isDupe) {
+        unique.push(submission)
+      } else {
+        duplicates.push(submission)
+      }
+    }
+    
+    setDuplicatesCount(duplicates.length)
+    return unique
+  }
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -40,8 +101,12 @@ const Admin = () => {
       const response = await fetch(`${SCRIPT_URL}?action=getSubmissions`)
       const data = await response.json()
       
-      setMidSubmissions(data.midSubmissions || [])
-      setFinalSubmissions(data.finalSubmissions || [])
+      // Apply duplicate removal
+      const uniqueMid = removeDuplicates(data.midSubmissions || [])
+      const uniqueFinal = removeDuplicates(data.finalSubmissions || [])
+      
+      setMidSubmissions(uniqueMid)
+      setFinalSubmissions(uniqueFinal)
     } catch (error) {
       console.error("Error fetching submissions:", error)
     } finally {
@@ -92,6 +157,13 @@ const Admin = () => {
     given: midSubmissions.filter(s => s.pizzaGiven === "Yes").length,
     pending: midSubmissions.filter(s => s.pizzaGiven === "No").length
   }
+
+  // Calculate domain-wise counts
+  const getDomainCount = (domain) => {
+    return currentSubmissions.filter(s => s.domain === domain).length
+  }
+
+  const selectedDomainCount = filterDomain ? getDomainCount(filterDomain) : null
 
   const exportToCSV = () => {
     const submissions = activeTab === "mid" ? midSubmissions : finalSubmissions
@@ -239,6 +311,28 @@ const Admin = () => {
           </h1>
         </div>
 
+        {/* DUPLICATE WARNING */}
+        {duplicatesCount > 0 && (
+          <div className="bg-[#FBBC05] border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-6 sm:mb-8">
+            <p className="text-black text-sm sm:text-lg font-bold flex items-center gap-2">
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
+              {duplicatesCount} duplicate submission{duplicatesCount > 1 ? 's' : ''} removed (showing most recent only)
+            </p>
+          </div>
+        )}
+
+        {/* DOMAIN COUNT */}
+        {selectedDomainCount !== null && (
+          <div className="bg-[#4285F4] border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-6 sm:mb-8">
+            <p className="text-white text-sm sm:text-lg font-bold mb-1">
+              {filterDomain} Submissions
+            </p>
+            <p className="text-white text-3xl sm:text-4xl font-bold" style={{ fontFamily: "BlueWinter" }}>
+              {selectedDomainCount}
+            </p>
+          </div>
+        )}
+
         {/* PIZZA STATS */}
         {activeTab === "mid" && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
@@ -320,12 +414,12 @@ const Admin = () => {
               onChange={(e) => setFilterDomain(e.target.value)}
               className="px-3 sm:px-4 py-2.5 sm:py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4] text-sm sm:text-base"
             >
-              <option value="">All Domains</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Blockchain">Blockchain</option>
-              <option value="Generative AI">Generative AI</option>
-              <option value="AI / Machine Learning">AI / Machine Learning</option>
-              <option value="Cybersecurity">Cybersecurity</option>
+              <option value="">All Domains ({currentSubmissions.length})</option>
+              <option value="Web Development">Web Development ({getDomainCount("Web Development")})</option>
+              <option value="Blockchain">Blockchain ({getDomainCount("Blockchain")})</option>
+              <option value="Generative AI">Generative AI ({getDomainCount("Generative AI")})</option>
+              <option value="AI / Machine Learning">AI / Machine Learning ({getDomainCount("AI / Machine Learning")})</option>
+              <option value="Cybersecurity">Cybersecurity ({getDomainCount("Cybersecurity")})</option>
             </select>
 
             {activeTab === "mid" && (
