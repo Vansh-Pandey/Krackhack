@@ -30,7 +30,7 @@ const Submissions = () => {
         </div>
 
         {/* IMPORTANT NOTICE */}
-        <div 
+        <div
           className="
             bg-[#FBBC05]
             border-4 border-black
@@ -47,7 +47,7 @@ const Submissions = () => {
 
         {/* SUBMISSION CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
+
           {/* MID SUBMISSION CARD */}
           <div
             className="
@@ -64,7 +64,7 @@ const Submissions = () => {
             style={{ animation: 'fadeInUp 0.6s ease-out' }}
           >
             {/* ICON */}
-            <div 
+            <div
               className="
                 inline-flex items-center justify-center
                 w-20 h-20
@@ -81,7 +81,7 @@ const Submissions = () => {
             </div>
 
             {/* TITLE */}
-            <h3 
+            <h3
               className="font-bold text-2xl sm:text-3xl mb-4 text-[#EA4335]"
               style={{ fontFamily: "BlueWinter" }}
             >
@@ -117,34 +117,25 @@ const Submissions = () => {
                 </li>
               </ul>
             </div>
-
-            {/* REWARD */}
-            <div className="bg-[#EA4335] bg-opacity-10 border-2 border-[#EA4335] p-4 mb-6">
-              <p className="font-bold text-[#ffffff] flex items-center gap-2">
-                🍕 Get your pizza after successful submission!
-              </p>
-            </div>
+ 
 
             {/* BUTTON */}
             <button
-              onClick={() => navigate("/mid-submission")}
               className="
-                w-full
-                px-8 py-4
-                bg-white
-                border-4 border-[#EA4335]
-                text-[#EA4335]
-                font-bold
-                text-lg
-                shadow-[6px_6px_0px_0px_#EA4335]
-                hover:shadow-[3px_3px_0px_0px_#EA4335]
-                hover:translate-x-0.75 hover:translate-y-0.75
-                transition-all duration-200
-              "
+            w-full
+            px-8 py-4
+            bg-white
+            border-4 border-[#EA4335]
+            text-[#EA4335]
+            font-bold
+            text-lg
+            shadow-[6px_6px_0px_0px_#EA4335]
+          "
               style={{ fontFamily: "BlueWinter" }}
             >
-              SUBMIT MID PROGRESS
+              MID SUBMISSION CLOSED
             </button>
+
           </div>
 
           {/* FINAL SUBMISSION CARD */}
@@ -163,7 +154,7 @@ const Submissions = () => {
             style={{ animation: 'fadeInUp 0.6s ease-out 0.1s both' }}
           >
             {/* ICON */}
-            <div 
+            <div
               className="
                 inline-flex items-center justify-center
                 w-20 h-20
@@ -180,7 +171,7 @@ const Submissions = () => {
             </div>
 
             {/* TITLE */}
-            <h3 
+            <h3
               className="font-bold text-2xl sm:text-3xl mb-4 text-[#34A853]"
               style={{ fontFamily: "BlueWinter" }}
             >
@@ -253,7 +244,7 @@ const Submissions = () => {
         </div>
 
         {/* HELP SECTION */}
-        <div 
+        <div
           className="
             mt-12
             bg-white
@@ -263,7 +254,7 @@ const Submissions = () => {
             text-center
           "
         >
-          <h3 
+          <h3
             className="font-bold text-2xl sm:text-3xl mb-4"
             style={{ fontFamily: "BlueWinter" }}
           >
