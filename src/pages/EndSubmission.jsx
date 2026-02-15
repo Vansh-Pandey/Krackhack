@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Send, CheckCircle2, AlertCircle, ArrowLeft, ExternalLink } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle, ArrowLeft, ExternalLink, Lock } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 const DOMAINS = {
@@ -103,9 +103,29 @@ const EndSubmission = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
+  const [isSubmissionClosed, setIsSubmissionClosed] = useState(false)
   
   // Toast notification state
   const [toast, setToast] = useState({ show: false, type: '', message: '' })
+
+  // Check if submissions are closed
+  useEffect(() => {
+    const checkDeadline = () => {
+      const now = new Date()
+      // Deadline: Feb 16, 2026 at 3:30 AM
+      const deadline = new Date('2026-02-16T03:30:00')
+      
+      if (now >= deadline) {
+        setIsSubmissionClosed(true)
+      }
+    }
+
+    checkDeadline()
+    // Check every minute
+    const interval = setInterval(checkDeadline, 60000)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   // Scroll to top when submission is successful
   useEffect(() => {
@@ -223,6 +243,14 @@ const EndSubmission = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
+    // Check if submissions are closed
+    if (isSubmissionClosed) {
+      setSubmitError("Submissions are now closed")
+      setToast({ show: true, type: 'error', message: 'Submissions are now closed' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
     const error = validateForm()
     if (error) {
       setSubmitError(error)
@@ -386,12 +414,21 @@ const EndSubmission = () => {
         </div>
 
         {/* INFO BOX */}
-        <div className="bg-[#EA4335] border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-8">
-          <p className="text-white text-lg font-bold flex items-center gap-2">
-            <AlertCircle className="w-6 h-6" strokeWidth={2.5} />
-            Submit your final project by EOD on 15 Feb
-          </p>
-        </div>
+        {isSubmissionClosed ? (
+          <div className="bg-[#EA4335] border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-8">
+            <p className="text-white text-lg font-bold flex items-center gap-2">
+              <Lock className="w-6 h-6" strokeWidth={2.5} />
+              Submissions closed at 3:30 AM on 16 Feb 2026
+            </p>
+          </div>
+        ) : (
+          <div className="bg-[#EA4335] border-4 border-black p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-8">
+            <p className="text-white text-lg font-bold flex items-center gap-2">
+              <AlertCircle className="w-6 h-6" strokeWidth={2.5} />
+              Submissions close at 3:30 AM on 16 Feb 2026
+            </p>
+          </div>
+        )}
 
         {/* SUCCESS MESSAGE */}
         {submitSuccess && (
@@ -417,7 +454,7 @@ const EndSubmission = () => {
         <form onSubmit={handleSubmit} className="space-y-8">
           
           {/* BASIC INFO */}
-          <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
             <h2 
               className="font-bold text-2xl mb-6 text-[#EA4335]"
               style={{ fontFamily: "BlueWinter" }}
@@ -436,6 +473,7 @@ const EndSubmission = () => {
                   className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4]"
                   placeholder="Enter your team name"
                   required
+                  disabled={isSubmissionClosed}
                 />
               </div>
 
@@ -447,6 +485,7 @@ const EndSubmission = () => {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4]"
                   required
+                  disabled={isSubmissionClosed}
                 >
                   <option value="">Select Domain</option>
                   {Object.keys(DOMAINS).map(domain => (
@@ -458,7 +497,7 @@ const EndSubmission = () => {
           </div>
 
           {/* COMPULSORY SUBMISSIONS */}
-          <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
             <h2 
               className="font-bold text-2xl mb-6 text-[#4285F4]"
               style={{ fontFamily: "BlueWinter" }}
@@ -477,6 +516,7 @@ const EndSubmission = () => {
                   className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4]"
                   placeholder="https://github.com/..."
                   required
+                  disabled={isSubmissionClosed}
                 />
               </div>
 
@@ -490,6 +530,7 @@ const EndSubmission = () => {
                   className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4]"
                   placeholder="https://youtube.com/..."
                   required
+                  disabled={isSubmissionClosed}
                 />
               </div>
 
@@ -502,6 +543,7 @@ const EndSubmission = () => {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4 focus:ring-[#4285F4]"
                   placeholder="https://..."
+                  disabled={isSubmissionClosed}
                 />
               </div>
             </div>
@@ -509,7 +551,7 @@ const EndSubmission = () => {
 
           {/* DOMAIN-SPECIFIC SUBMISSIONS */}
           {selectedDomain && formData.domain === "Web Development" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
               <h2 
                 className="font-bold text-2xl mb-6"
                 style={{ fontFamily: "BlueWinter", color: selectedDomain.color }}
@@ -528,6 +570,7 @@ const EndSubmission = () => {
                     style={{ outlineColor: selectedDomain.color }}
                     placeholder="Full name of team leader"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -541,6 +584,7 @@ const EndSubmission = () => {
                     style={{ outlineColor: selectedDomain.color }}
                     placeholder="+91XXXXXXXXXX"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -553,6 +597,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     style={{ outlineColor: selectedDomain.color }}
                     placeholder="https://..."
+                    disabled={isSubmissionClosed}
                   />
                 </div>
               </div>
@@ -560,7 +605,7 @@ const EndSubmission = () => {
           )}
 
           {selectedDomain && formData.domain === "Blockchain" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
               <h2 
                 className="font-bold text-2xl mb-6"
                 style={{ fontFamily: "BlueWinter", color: selectedDomain.color }}
@@ -578,6 +623,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Full name of team leader"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -590,6 +636,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="+91XXXXXXXXXX"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -602,6 +649,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Link to README with project summary and quick start"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -614,6 +662,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Link to contract code and tests"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -626,6 +675,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Link to frontend code and live demo"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -638,6 +688,7 @@ const EndSubmission = () => {
                     placeholder="Testnet/mainnet addresses and 3 example transaction hashes"
                     rows={4}
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -650,6 +701,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Short demo video (max 5 min) on any social platform"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -662,6 +714,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Netlify / Vercel / IPFS gateway"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
               </div>
@@ -669,7 +722,7 @@ const EndSubmission = () => {
           )}
 
           {selectedDomain && formData.domain === "Generative AI" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
               <h2 
                 className="font-bold text-2xl mb-6"
                 style={{ fontFamily: "BlueWinter", color: selectedDomain.color }}
@@ -699,6 +752,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Full name of team leader"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -711,6 +765,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="email@example.com"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -723,6 +778,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="+91XXXXXXXXXX"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -735,6 +791,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Your project name"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -747,6 +804,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Devpost, GitHub README, etc."
                     required
+                    disabled={isSubmissionClosed}
                   />
                   <p className="text-sm text-gray-600 mt-2">
                     This must include the problem you solved and why a specialized model was better than a general LLM.
@@ -762,6 +820,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="https://huggingface.co/datasets/smolify/..."
                     required
+                    disabled={isSubmissionClosed}
                   />
                   <p className="text-sm text-gray-600 mt-2">
                     Link to the synthetic dataset you generated using the Smolify platform.
@@ -777,6 +836,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="https://huggingface.co/smolify/..."
                     required
+                    disabled={isSubmissionClosed}
                   />
                   <p className="text-sm text-gray-600 mt-2">
                     Link to the Hugging Face model you trained using Smolify.
@@ -792,6 +852,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="https://twitter.com/..."
                     required
+                    disabled={isSubmissionClosed}
                   />
                   <p className="text-sm text-gray-600 mt-2">
                     Must include screenshot/video, tag @smolifyai, and caption "Built with Smolify.AI"
@@ -807,6 +868,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="https://linkedin.com/posts/..."
                     required
+                    disabled={isSubmissionClosed}
                   />
                   <p className="text-sm text-gray-600 mt-2">
                     Must include screenshot/video, tag Smolify, and caption "Built with Smolify.AI"
@@ -831,6 +893,7 @@ const EndSubmission = () => {
                         placeholder="Describe the real-world challenge your model addresses. Focus on high-value tasks that require privacy or strict data structure."
                         rows={4}
                         required
+                        disabled={isSubmissionClosed}
                       />
                     </div>
 
@@ -845,6 +908,7 @@ const EndSubmission = () => {
                         placeholder="Explain why your custom SLM is better than just calling GPT-4 for this specific task. Mention factors like privacy, speed, specific structure requirements, or cost per inference."
                         rows={4}
                         required
+                        disabled={isSubmissionClosed}
                       />
                     </div>
 
@@ -859,6 +923,7 @@ const EndSubmission = () => {
                         placeholder="Describe how the model runs (e.g., local laptop, edge device, cloud) and how it handles inputs to create structured outputs (JSON, strict formatting, etc.)."
                         rows={4}
                         required
+                        disabled={isSubmissionClosed}
                       />
                     </div>
                   </div>
@@ -868,7 +933,7 @@ const EndSubmission = () => {
           )}
 
           {selectedDomain && formData.domain === "AI / Machine Learning" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
               <h2 
                 className="font-bold text-2xl mb-6"
                 style={{ fontFamily: "BlueWinter", color: selectedDomain.color }}
@@ -886,6 +951,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Full name of team leader"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -898,6 +964,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="+91XXXXXXXXXX"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -910,6 +977,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Link to final packaged folder with all files"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -922,6 +990,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Link to train.py, test.py, config files"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -934,6 +1003,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Report covering methodology, challenges, optimizations, evaluation"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -946,6 +1016,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="README with setup, run instructions, dependencies"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
               </div>
@@ -953,7 +1024,7 @@ const EndSubmission = () => {
           )}
 
           {selectedDomain && formData.domain === "Cybersecurity" && (
-            <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <div className={`bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${isSubmissionClosed ? 'opacity-60 pointer-events-none' : ''}`}>
               <h2 
                 className="font-bold text-2xl mb-6"
                 style={{ fontFamily: "BlueWinter", color: selectedDomain.color }}
@@ -971,6 +1042,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="Full name of team leader"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -983,6 +1055,7 @@ const EndSubmission = () => {
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="+91XXXXXXXXXX"
                     required
+                    disabled={isSubmissionClosed}
                   />
                 </div>
 
@@ -994,6 +1067,7 @@ const EndSubmission = () => {
                     onChange={(e) => handleSpecificLinkChange("deployedWebsite", e.target.value)}
                     className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
                     placeholder="https://..."
+                    disabled={isSubmissionClosed}
                   />
                 </div>
               </div>
@@ -1003,7 +1077,7 @@ const EndSubmission = () => {
           {/* SUBMIT BUTTON */}
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isSubmissionClosed}
             className="
               cursor-target
               w-full
@@ -1022,7 +1096,12 @@ const EndSubmission = () => {
             "
             style={{ fontFamily: "BlueWinter" }}
           >
-            {isSubmitting ? (
+            {isSubmissionClosed ? (
+              <>
+                <Lock className="inline w-6 h-6 mr-2 mb-1" strokeWidth={2.5} />
+                SUBMISSIONS CLOSED
+              </>
+            ) : isSubmitting ? (
               "SUBMITTING..."
             ) : (
               <>
