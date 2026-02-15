@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import LoadingOverlay from "./components/loading/LoadingOverlay.jsx";
 import TargetCursor from "./components/ui/TargetCursor.jsx";
-import Home from "./pages/Home.jsx";
-import MidSubmission from "./pages/MidSubmission.jsx";
+import Home from "./pages/Home.jsx"; 
 import EndSubmission from "./pages/EndSubmission.jsx";
 import Admin from "./pages/Admin.jsx";
 
@@ -31,8 +30,7 @@ export default function App() {
         hoverDuration={0.2}
       />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/mid-submission" element={<MidSubmission />} />
+        <Route path="/" element={<Home />} /> 
         <Route path="/final-submission" element={<EndSubmission />} />
         <Route path="/krackhack-admin" element={<Admin />} />
       </Routes>

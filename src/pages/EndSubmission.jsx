@@ -11,6 +11,8 @@ const DOMAINS = {
       "Live Link - optional"
     ],
     specific: [
+      "Team Leader Full Name",
+      "Team Leader WhatsApp",
       "Technical Presentation"
     ]
   },
@@ -22,6 +24,8 @@ const DOMAINS = {
       "Live Link - optional"
     ],
     specific: [
+      "Team Leader Full Name",
+      "Team Leader WhatsApp",
       "Public GitHub repo (or GitLab)",
       "README.md with one-paragraph project summary and quick start",
       "Contract code + tests",
@@ -61,6 +65,8 @@ const DOMAINS = {
       "Live Link - optional"
     ],
     specific: [
+      "Team Leader Full Name",
+      "Team Leader WhatsApp",
       "A single, Final Packaged Folder that includes all necessary files",
       "Model training and inference scripts (train.py, test.py)",
       "Configuration files",
@@ -85,6 +91,8 @@ const DOMAINS = {
       "Live Link - optional"
     ],
     specific: [
+      "Team Leader Full Name",
+      "Team Leader WhatsApp",
       "Deploy website comp"
     ]
   }
@@ -150,6 +158,14 @@ const EndSubmission = () => {
     const domain = DOMAINS[formData.domain]
     if (!domain) return "Invalid domain selected"
     
+    // Check team leader info for all domains
+    if (!formData.specificLinks.leaderName?.trim()) {
+      return "Team leader name is required"
+    }
+    if (!formData.specificLinks.leaderWhatsapp?.trim()) {
+      return "Team leader WhatsApp is required"
+    }
+
     // For specific domains, check if all required specific links are filled
     if (formData.domain === "Blockchain") {
       const requiredFields = [
@@ -169,9 +185,7 @@ const EndSubmission = () => {
 
     if (formData.domain === "Generative AI") {
       const requiredFields = [
-        "leaderName",
         "leaderEmail",
-        "leaderWhatsapp",
         "projectName",
         "documentation",
         "datasetLink",
@@ -294,9 +308,9 @@ const EndSubmission = () => {
         >
           <div className="flex items-start gap-3">
             {toast.type === 'success' ? (
-              <CheckCircle2 className="w-6 h-6 text-white flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+              <CheckCircle2 className="w-6 h-6 text-white shrink-0 mt-0.5" strokeWidth={2.5} />
             ) : (
-              <AlertCircle className="w-6 h-6 text-white flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+              <AlertCircle className="w-6 h-6 text-white shrink-0 mt-0.5" strokeWidth={2.5} />
             )}
             <p className="text-white font-bold flex-1">{toast.message}</p>
             <button
@@ -402,9 +416,6 @@ const EndSubmission = () => {
         {/* FORM */}
         <form onSubmit={handleSubmit} className="space-y-8">
           
-          {/* ... REST OF THE FORM CODE REMAINS EXACTLY THE SAME ... */}
-          {/* I'm keeping the rest of the code unchanged as requested */}
-          
           {/* BASIC INFO */}
           <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
             <h2 
@@ -508,6 +519,32 @@ const EndSubmission = () => {
 
               <div className="space-y-4">
                 <div>
+                  <label className="block font-bold mb-2">Team Leader Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.specificLinks.leaderName || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderName", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    style={{ outlineColor: selectedDomain.color }}
+                    placeholder="Full name of team leader"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold mb-2">Team Leader WhatsApp *</label>
+                  <input
+                    type="tel"
+                    value={formData.specificLinks.leaderWhatsapp || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderWhatsapp", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    style={{ outlineColor: selectedDomain.color }}
+                    placeholder="+91XXXXXXXXXX"
+                    required
+                  />
+                </div>
+
+                <div>
                   <label className="block font-bold mb-2">Technical Presentation Link</label>
                   <input
                     type="url"
@@ -532,6 +569,30 @@ const EndSubmission = () => {
               </h2>
 
               <div className="space-y-4">
+                <div>
+                  <label className="block font-bold mb-2">Team Leader Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.specificLinks.leaderName || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderName", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="Full name of team leader"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold mb-2">Team Leader WhatsApp *</label>
+                  <input
+                    type="tel"
+                    value={formData.specificLinks.leaderWhatsapp || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderWhatsapp", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="+91XXXXXXXXXX"
+                    required
+                  />
+                </div>
+
                 <div>
                   <label className="block font-bold mb-2">README.md Link *</label>
                   <input
@@ -817,6 +878,30 @@ const EndSubmission = () => {
 
               <div className="space-y-4">
                 <div>
+                  <label className="block font-bold mb-2">Team Leader Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.specificLinks.leaderName || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderName", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="Full name of team leader"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold mb-2">Team Leader WhatsApp *</label>
+                  <input
+                    type="tel"
+                    value={formData.specificLinks.leaderWhatsapp || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderWhatsapp", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="+91XXXXXXXXXX"
+                    required
+                  />
+                </div>
+
+                <div>
                   <label className="block font-bold mb-2">Packaged Folder Link *</label>
                   <input
                     type="url"
@@ -877,6 +962,30 @@ const EndSubmission = () => {
               </h2>
 
               <div className="space-y-4">
+                <div>
+                  <label className="block font-bold mb-2">Team Leader Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.specificLinks.leaderName || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderName", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="Full name of team leader"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-bold mb-2">Team Leader WhatsApp *</label>
+                  <input
+                    type="tel"
+                    value={formData.specificLinks.leaderWhatsapp || ""}
+                    onChange={(e) => handleSpecificLinkChange("leaderWhatsapp", e.target.value)}
+                    className="w-full px-4 py-3 border-4 border-black focus:outline-none focus:ring-4"
+                    placeholder="+91XXXXXXXXXX"
+                    required
+                  />
+                </div>
+
                 <div>
                   <label className="block font-bold mb-2">Deployed Website Link</label>
                   <input
