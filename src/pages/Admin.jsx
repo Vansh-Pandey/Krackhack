@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Pizza, CheckCircle2, XCircle, RefreshCw, Search, Filter, Download, Lock, AlertTriangle } from "lucide-react"
+import { Pizza, CheckCircle2, XCircle, RefreshCw, Search, Filter, Download, Lock, AlertTriangle, Users } from "lucide-react"
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -156,6 +156,13 @@ const Admin = () => {
     total: midSubmissions.length,
     given: midSubmissions.filter(s => s.pizzaGiven === "Yes").length,
     pending: midSubmissions.filter(s => s.pizzaGiven === "No").length
+  }
+
+  // Calculate team size statistics
+  const teamSizeStats = {
+    twoMember: currentSubmissions.filter(s => s.members?.length === 2).length,
+    threeMember: currentSubmissions.filter(s => s.members?.length === 3).length,
+    fourMember: currentSubmissions.filter(s => s.members?.length === 4).length
   }
 
   // Calculate domain-wise counts
@@ -332,6 +339,39 @@ const Admin = () => {
             </p>
           </div>
         )}
+
+        {/* TEAM SIZE STATISTICS */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-[#EA4335] border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <p className="text-white text-xs sm:text-sm font-bold mb-1 sm:mb-2 flex items-center gap-2">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+              2-Member Teams
+            </p>
+            <p className="text-white text-3xl sm:text-4xl font-bold" style={{ fontFamily: "BlueWinter" }}>
+              {teamSizeStats.twoMember}
+            </p>
+          </div>
+
+          <div className="bg-[#FBBC05] border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <p className="text-white text-xs sm:text-sm font-bold mb-1 sm:mb-2 flex items-center gap-2">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+              3-Member Teams
+            </p>
+            <p className="text-white text-3xl sm:text-4xl font-bold" style={{ fontFamily: "BlueWinter" }}>
+              {teamSizeStats.threeMember}
+            </p>
+          </div>
+
+          <div className="bg-[#34A853] border-4 border-black p-4 sm:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+            <p className="text-white text-xs sm:text-sm font-bold mb-1 sm:mb-2 flex items-center gap-2">
+              <Users className="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2.5} />
+              4-Member Teams
+            </p>
+            <p className="text-white text-3xl sm:text-4xl font-bold" style={{ fontFamily: "BlueWinter" }}>
+              {teamSizeStats.fourMember}
+            </p>
+          </div>
+        </div>
 
         {/* PIZZA STATS */}
         {activeTab === "mid" && (
@@ -528,6 +568,9 @@ const Admin = () => {
                           {submission.pizzaGiven === "Yes" ? "🍕 Pizza Given" : "⏳ Pizza Pending"}
                         </span>
                       )}
+                      <span className="px-2 sm:px-3 py-1 border-2 border-black font-bold text-xs sm:text-sm bg-[#4285F4] text-white">
+                        👥 {submission.members?.length || 0} Members
+                      </span>
                     </div>
                   </div>
 

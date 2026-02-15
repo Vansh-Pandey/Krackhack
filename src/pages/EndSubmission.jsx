@@ -95,6 +95,9 @@ const EndSubmission = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
+  
+  // Toast notification state
+  const [toast, setToast] = useState({ show: false, type: '', message: '' })
 
   // Scroll to top when submission is successful
   useEffect(() => {
@@ -102,6 +105,16 @@ const EndSubmission = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }, [submitSuccess])
+
+  // Auto-hide toast after 5 seconds
+  useEffect(() => {
+    if (toast.show) {
+      const timer = setTimeout(() => {
+        setToast({ show: false, type: '', message: '' })
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [toast.show])
 
   const [formData, setFormData] = useState({
     teamName: "",
@@ -199,6 +212,7 @@ const EndSubmission = () => {
     const error = validateForm()
     if (error) {
       setSubmitError(error)
+      setToast({ show: true, type: 'error', message: error })
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
@@ -231,6 +245,11 @@ const EndSubmission = () => {
       })
 
       setSubmitSuccess(true)
+      setToast({ 
+        show: true, 
+        type: 'success', 
+        message: 'Final submission successful! Good luck with judging! 🎉' 
+      })
       
       setTimeout(() => {
         setFormData({
@@ -247,6 +266,11 @@ const EndSubmission = () => {
     } catch (error) {
       console.error("Submission error:", error)
       setSubmitError("Submission failed. Please try again.")
+      setToast({ 
+        show: true, 
+        type: 'error', 
+        message: 'Submission failed. Please try again.' 
+      })
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setIsSubmitting(false)
@@ -257,6 +281,47 @@ const EndSubmission = () => {
 
   return (
     <div className="min-h-screen bg-white py-12 px-6">
+      {/* TOAST NOTIFICATION */}
+      {toast.show && (
+        <div 
+          className={`fixed top-8 right-8 z-50 px-6 py-4 border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] animate-slide-in ${
+            toast.type === 'success' ? 'bg-[#34A853]' : 'bg-[#EA4335]'
+          }`}
+          style={{
+            animation: 'slideIn 0.3s ease-out',
+            maxWidth: '400px'
+          }}
+        >
+          <div className="flex items-start gap-3">
+            {toast.type === 'success' ? (
+              <CheckCircle2 className="w-6 h-6 text-white flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+            ) : (
+              <AlertCircle className="w-6 h-6 text-white flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+            )}
+            <p className="text-white font-bold flex-1">{toast.message}</p>
+            <button
+              onClick={() => setToast({ show: false, type: '', message: '' })}
+              className="text-white hover:opacity-70 transition-opacity ml-2"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+
       <div className="mx-auto max-w-4xl">
         
         {/* BACK BUTTON */}
@@ -336,6 +401,9 @@ const EndSubmission = () => {
 
         {/* FORM */}
         <form onSubmit={handleSubmit} className="space-y-8">
+          
+          {/* ... REST OF THE FORM CODE REMAINS EXACTLY THE SAME ... */}
+          {/* I'm keeping the rest of the code unchanged as requested */}
           
           {/* BASIC INFO */}
           <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
